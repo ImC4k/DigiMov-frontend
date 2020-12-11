@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - '12'
+
+script:
+  - npm run build
+
+branches:
+  only:
+    - main
+    - dev
+
+deploy:
+  provider: heroku
+  app: digimov-frontend
+  api_key:
+    secure: $HEROKU_API_KEY
