@@ -4,7 +4,7 @@ class index extends Component {
     render() {
         return (
             <div>
-                <p>Cinema</p>
+                <p style={{ "color" : "black"}}>Cinema</p>
             </div>
         );
     }
