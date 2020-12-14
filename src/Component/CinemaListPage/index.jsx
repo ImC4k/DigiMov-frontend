@@ -1,32 +1,19 @@
 import React, { Component } from 'react';
-import {v4 as uuidv4} from 'uuid'
-import CinemaCard from '../CinemaCard'
+import {v4 as uuidv4} from 'uuid';
+import CinemaCard from '../CinemaCard';
+import {getAllCinemas} from '../../apis/cinema';
 class index extends Component {
-    constructor(props){
-        super(props);
-        this.state={cinemas:[{
-            id: uuidv4(),
-            name: "MCL Cinema",
-            address: "11/F, D2 Place TWO, No. 15 Cheung Shun Street, Lai Chi Kok, Kowloon",
-            openingHours: "",
-            hotline: "",
-            imageUrl: "https://media.timeout.com/images/105284473/630/472/image.jpg"
-        },
-        {
-            id: uuidv4(),
-            name: "MCL Cinema",
-            address: "11/F, D2 Place TWO, No. 15 Cheung Shun Street, Lai Chi Kok, Kowloon",
-            openingHours: "",
-            hotline: "",
-            imageUrl: "https://media.timeout.com/images/105284473/630/472/image.jpg"
-        }
-        ]}
+    componentDidMount(){
+        getAllCinemas().then((response)=>{
+            this.props.initCinemaList(response.data);
+        })
     }
     render() {
-        const cinemas = this.state.cinemas.map((cinema)=>
+        const cinemas = this.props.cinemaList.map((cinema)=>
             <CinemaCard key={cinema.id} cinema={cinema}/>
         );
         return (
+            //todo: check whether the cinemaList is empty abd display message.
             <div>
                 <p>Cinemas</p>
                 <input type="text" placeholder="Search"/><br />
