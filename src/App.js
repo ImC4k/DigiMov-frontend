@@ -2,7 +2,7 @@ import './App.css';
 
 import Drawer from './Component/Drawer';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import React, {Component} from 'react';
+import React from 'react';
 import routes from './routes';
 
 function App() {

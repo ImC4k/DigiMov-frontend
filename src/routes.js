@@ -1,11 +1,11 @@
-import Cinemas from './Component/Cinemas';
+import CinemaListPage from './Component/CinemaListPage';
 
 const routes = [
     {
       name: 'cinema',
       path: '/cinemas',
       description: 'Cinemas',
-      component: Cinemas
+      component: CinemaListPage
     }
   ];
 
