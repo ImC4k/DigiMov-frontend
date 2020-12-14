@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import routes from "../../routes.js"
+import routes from '../../routes.js';
 import { Link, Route, Switch } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -92,30 +92,30 @@ export default function PersistentDrawerLeft() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position='fixed'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            edge="start"
+            edge='start'
             className={clsx(classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant='h6' noWrap>
             Drawer Demo
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
-        anchor="left"
+        variant='persistent'
+        anchor='left'
         open={open}
         classes={{
           paper: classes.drawerPaper,
@@ -123,14 +123,20 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
         <List>
           {routes.map((route, index) => (
             <ListItem button key={route.name}>
-              <Link to={route.path} onClick={handleDrawerClose}>{route.description}</Link>
+              <Link to={route.path} onClick={handleDrawerClose}>
+                {route.description}
+              </Link>
             </ListItem>
           ))}
         </List>
@@ -143,11 +149,14 @@ export default function PersistentDrawerLeft() {
         <div className={classes.drawerHeader} />
       </main>
       <Switch>
-        {
-          routes.map(route =>
-            <Route key={route.name} path={route.path} component={route.component} exact />
-          )
-        }
+        {routes.map((route) => (
+          <Route
+            key={route.name}
+            path={route.path}
+            component={route.component}
+            exact
+          />
+        ))}
       </Switch>
     </div>
   );

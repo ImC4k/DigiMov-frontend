@@ -1,1 +1,1 @@
-export const INIT_CINEMA_LIST = "INIT_CINEMA_LIST";
+export const INIT_CINEMA_LIST = 'INIT_CINEMA_LIST';
