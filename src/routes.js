@@ -1,12 +1,12 @@
-import CinemaListPage from './Component/CinemaListPage';
+import CinemaListPageContainer from './Container/CinemaListPageContainer';
 
 const routes = [
-    {
-      name: 'cinema',
-      path: '/cinemas',
-      description: 'Cinemas',
-      component: CinemaListPage
-    }
-  ];
+  {
+    name: 'cinema',
+    path: '/cinemas',
+    description: 'Cinemas',
+    component: CinemaListPageContainer,
+  },
+];
 
-  export default routes;
+export default routes;
