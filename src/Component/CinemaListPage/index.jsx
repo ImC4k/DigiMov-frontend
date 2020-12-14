@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import CinemaCard from '../CinemaCard';
 import { getAllCinemas } from '../../apis/cinema';
+import './CinemaListPage.css';
+import { Grid } from '@material-ui/core';
 class index extends Component {
   componentDidMount() {
     getAllCinemas().then((response) => {
@@ -14,15 +16,20 @@ class index extends Component {
           <CinemaCard key={cinema.id} cinema={cinema} />
         ))
       ) : (
-        <p>No available cinema</p>
+        <p className={'indicator-text'}>No available cinema</p>
       );
     return (
-      <div>
-        <p>Cinemas</p>
-        <input type='text' placeholder='Search' />
-        <br />
-        {cinemas}
-      </div>
+      <Grid container justify='center' alignItems='center'>
+        <Grid container item xs={10} className={'paper-content'}>
+          <Grid container item xs={12} >
+            <div className={'section-title'}>Cinemas</div>
+          </Grid>
+          <Grid container item xs={12} >
+            <input type='text' className={'search-box'} placeholder='Search' />
+            {cinemas}
+          </Grid>
+        </Grid>
+      </Grid>
     );
   }
 }

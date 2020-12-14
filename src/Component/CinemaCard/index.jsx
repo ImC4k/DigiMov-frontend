@@ -5,7 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { ERROR_IMAGE } from '../../assets';
-
+import './CinemaCard.css';
 class index extends Component {
   constructor(props) {
     super(props);
@@ -24,10 +24,10 @@ class index extends Component {
   render() {
     const { name, address } = this.props.cinema;
     return (
-      <Card style={{ maxWidth: 345 }}>
+      <Card className={'custom-card'}>
         <CardActionArea>
           <CardMedia
-            style={{ height: 140 }}
+            className={'card-image'}
             src={this.state.imageUrl}
             component='img'
             onError={(e) => {
@@ -36,10 +36,13 @@ class index extends Component {
             }}
           />
           <CardContent>
-            <Typography gutterBottom variant='h5' component='h2'>
+            <Typography
+              gutterBottom
+              className={'card-title'}
+            >
               {name}
             </Typography>
-            <Typography variant='body2' color='textSecondary' component='p'>
+            <Typography className={'card-description'}color='textSecondary' component='p'>
               {address}
             </Typography>
           </CardContent>
