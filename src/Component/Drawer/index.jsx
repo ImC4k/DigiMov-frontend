@@ -15,8 +15,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import routes from "../../routes.js"
 import { Link } from 'react-router-dom';
+import "./drawer.css";
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -93,23 +94,23 @@ export default function PersistentDrawerLeft() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
+        className={clsx("drawer-background", classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
+          <Typography className={"drawer-app-name"} variant="h6" noWrap>
+            Digi<span className={"bold-app-name"}>Mov</span>
+          </Typography>
+
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={clsx("drawer-button", classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Drawer Demo
-          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
