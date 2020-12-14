@@ -17,7 +17,7 @@ import routes from "../../routes.js"
 import { Link } from 'react-router-dom';
 import "./drawer.css";
 
-const drawerWidth = 200;
+const drawerWidth = 150;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    background: "#f5f5f5 0% 0% no-repeat padding-box",
+    boxShadow: "3px 0px 10px #00000029",
+    border: 0,
   },
   drawerHeader: {
     display: 'flex',
@@ -94,12 +97,12 @@ export default function PersistentDrawerLeft() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx("drawer-background", classes.appBar, {
+        className={clsx("app-bar-background", classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
-          <Typography className={"drawer-app-name"} variant="h6" noWrap>
+          <Typography className={"app-bar-app-name"} variant="h6" noWrap>
             Digi<span className={"bold-app-name"}>Mov</span>
           </Typography>
 
@@ -107,7 +110,7 @@ export default function PersistentDrawerLeft() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx("drawer-button", classes.menuButton, open && classes.hide)}
+            className={clsx("app-bar-button", classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
           </IconButton>
@@ -127,11 +130,10 @@ export default function PersistentDrawerLeft() {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
-        <Divider />
         <List>
           {routes.map((route, index) => (
             <ListItem button key={route.name}>
-              <Link to={route.path} onClick={handleDrawerClose}>{route.description}</Link>
+              <Link className={"router-link"} to={route.path} onClick={handleDrawerClose}>{route.description}</Link>
             </ListItem>
           ))}
         </List>
