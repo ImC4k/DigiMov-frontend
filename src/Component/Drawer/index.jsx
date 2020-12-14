@@ -14,7 +14,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import routes from "../../routes.js"
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -142,6 +142,13 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader} />
       </main>
+      <Switch>
+        {
+          routes.map(route =>
+            <Route key={route.name} path={route.path} component={route.component} exact />
+          )
+        }
+      </Switch>
     </div>
   );
 }
