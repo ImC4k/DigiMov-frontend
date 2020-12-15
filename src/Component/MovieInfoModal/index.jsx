@@ -36,56 +36,56 @@ export default class index extends Component {
         <div className={'poster-info-box'}>
           <Grid container justify='center' alignItems='center'>
             <Grid container item xs={10}>
-              <Grid container className={'movie-name'}>
+              <Grid container className={'movie-info-modal-name'}>
                 {this.state.movieInfo.name}
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Description
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.description}
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Director
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.director}
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Cast
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.cast.join(', ')}
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Run Time
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.duration} minutes
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Category
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.rating}
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Genre
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.genres.join(', ')}
               </Grid>
 
-              <Grid container className={'section-title'}>
+              <Grid container className={'movie-info-modal-title'}>
                 Language
               </Grid>
-              <Grid container className={'section-content'}>
+              <Grid container className={'movie-info-modal-content'}>
                 {this.state.movieInfo.language}
               </Grid>
             </Grid>
