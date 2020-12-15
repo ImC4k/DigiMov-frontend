@@ -139,7 +139,7 @@ function CineamSessionPicker() {
         ]);
        }
 
-    });
+    },  [cinema, movieSessions.length, cinemaId]);
     
     
     return (
