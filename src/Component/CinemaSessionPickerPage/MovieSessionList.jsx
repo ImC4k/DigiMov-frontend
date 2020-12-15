@@ -1,8 +1,22 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Divider, Modal } from '@material-ui/core';
 import moment from 'moment';
 
+
+import MovieInfoModal from '../MovieInfoModal';
+
 function MovieSessionList({ movieSessions }) {
+    const [open, setOpen] = React.useState(false);
+    const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
+
+    const handleOpen = (movieInfoInModal) => {
+        setOpen(true);
+        setMovieInfoInModal(movieInfoInModal);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     const movieMap = {};
     const movieSessionMap = movieSessions.sort((a, b) => a.startTime < b.startTime ? -1 : 1).reduce((map, item) => {
         const startTime = moment(item.startTime);
@@ -59,8 +73,9 @@ function MovieSessionList({ movieSessions }) {
             return (
                 <div>
                     <Grid container item xs={12}>
-                        {movieMap[movieId].name}
+                        {movieMap[movieId].name} <div onClick={() => handleOpen(movieMap[movieId])}>More details</div>
                     </Grid>
+                    <Divider/>
                     {
                         Object.keys(movieSessionMap[movieId]).map((movieSessionByYear) => {
                             return Object.keys(movieSessionMap[movieId][movieSessionByYear]).map((movieSessionByMonth) => {
@@ -70,10 +85,17 @@ function MovieSessionList({ movieSessions }) {
                             }) 
                         }) 
                     }
+                    <Divider/>
                 </div>
                 
                 )
         })}
+
+        <Modal open={open} onClose={handleClose}>
+            <div>
+              <MovieInfoModal movie={movieInfoInModal}/>
+            </div>
+          </Modal>
         </div>
     );
     return <>{renderMovieSessions}</>;

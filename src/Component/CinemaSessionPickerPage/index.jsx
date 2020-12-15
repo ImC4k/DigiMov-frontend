@@ -12,6 +12,7 @@ function CineamSessionPicker() {
     const [cinema, setCinema] = useState(
         useSelector((state) => state.cinemas[cinemaId])
     );
+    const [movieSessions, setMovieSession] = useState([]);
     
     let history = useHistory();
     useEffect(() => {
@@ -24,113 +25,123 @@ function CineamSessionPicker() {
                 setCinema(response.data);
             });
         }
-    });
+       if(movieSessions.length === 0){
+        /*
+        //wait api ready
+        getCigetUpcomingMovieSessionListByCinemaIdnema(cinemaId).then((response) => {
+            //Todo: Enhancement update fetched movie to redux
+            setMovieSession(response.data);
+        });
+        */
+        setMovieSession([
+            {
+                id: '5fd760d56500c940f174f4b0',
+                movie: {
+                    id: '5fd760d56500c940f174f4a0',
+                    name: 'Beyond the dream',
+                    duration: 100,
+                    genres: [
+                        {
+                            id: '5fd760d56500c940f174f4a0',
+                            name: 'Romance',
+                        },
+                    ],
+                    director: 'Kiwi Chow',
+                    description: 'I go to school by bus',
+                    imageUrl:
+                        'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
+                    rating: 'IIA',
+                    cast: ['ME', 'Them'],
+                    language: 'Cantonese',
+                },
+                house: {
+                    id: '5fd760d56500c940f174f4a01',
+                    cinemaId: '5fd760d56500c940f174f4a2',
+                    name: 'House 1',
+                    capacity: 100,
+                },
+                startTime: 1608018165676,
+                prices: {
+                    Adult: 100,
+                    Student: 60,
+                },
+                occupied: {},
+                occupancyCount: 1,
+            },
+            {
+                id: '5fd760d56500c940f174f4b0',
+                movie: {
+                    id: '5fd760d56500c940f174f4a0',
+                    name: 'Beyond the dream',
+                    duration: 100,
+                    genres: [
+                        {
+                            id: '5fd760d56500c940f174f4a0',
+                            name: 'Romance',
+                        },
+                    ],
+                    director: 'Kiwi Chow',
+                    description: 'I go to school by bus',
+                    imageUrl:
+                        'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
+                    rating: 'IIA',
+                    cast: ['ME', 'Them'],
+                    language: 'Cantonese',
+                },
+                house: {
+                    id: '5fd760d56500c940f174f4a01',
+                    cinemaId: '5fd760d56500c940f174f4a2',
+                    name: 'House 1',
+                    capacity: 100,
+                },
+                startTime: 1608019165676,
+                prices: {
+                    Adult: 100,
+                    Student: 60,
+                },
+                occupied: {},
+                occupancyCount: 1,
+            },
+            {
+                id: '5fd760d56500c940f174f4b0',
+                movie: {
+                    id: '5fd760d56500c940f174f4a3',
+                    name: 'Helloworld',
+                    duration: 100,
+                    genres: [
+                        {
+                            id: '5fd760d56500c940f174f4a0',
+                            name: 'Romance',
+                        },
+                    ],
+                    director: 'Chan Tai Man',
+                    description: 'I go to school by bus',
+                    imageUrl:
+                        'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
+                    rating: 'IIA',
+                    cast: ['ME', 'Them'],
+                    language: 'Cantonese',
+                },
+                house: {
+                    id: '5fd760d56500c940f174f4a01',
+                    cinemaId: '5fd760d56500c940f174f4a2',
+                    name: 'House 1',
+                    capacity: 100,
+                },
+                startTime: 1608019165676,
+                prices: {
+                    Adult: 100,
+                    Student: 60,
+                },
+                occupied: {},
+                occupancyCount: 1,
+            },
+        ]);
+       }
 
+    });
     
-    const [movieSessions, setMovieSession] = useState([
-        {
-            id: '5fd760d56500c940f174f4b0',
-            movie: {
-                id: '5fd760d56500c940f174f4a0',
-                name: 'Beyond the dream',
-                duration: 100,
-                genres: [
-                    {
-                        id: '5fd760d56500c940f174f4a0',
-                        name: 'Romance',
-                    },
-                ],
-                director: 'Kiwi Chow',
-                description: 'I go to school by bus',
-                imageUrl:
-                    'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
-                rating: 'IIA',
-                cast: ['ME', 'Them'],
-                language: 'Cantonese',
-            },
-            house: {
-                id: '5fd760d56500c940f174f4a01',
-                cinemaId: '5fd760d56500c940f174f4a2',
-                name: 'House 1',
-                capacity: 100,
-            },
-            startTime: 1608018165676,
-            prices: {
-                Adult: 100,
-                Student: 60,
-            },
-            occupied: {},
-            occupancyCount: 1,
-        },
-        {
-            id: '5fd760d56500c940f174f4b0',
-            movie: {
-                id: '5fd760d56500c940f174f4a0',
-                name: 'Beyond the dream',
-                duration: 100,
-                genres: [
-                    {
-                        id: '5fd760d56500c940f174f4a0',
-                        name: 'Romance',
-                    },
-                ],
-                director: 'Kiwi Chow',
-                description: 'I go to school by bus',
-                imageUrl:
-                    'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
-                rating: 'IIA',
-                cast: ['ME', 'Them'],
-                language: 'Cantonese',
-            },
-            house: {
-                id: '5fd760d56500c940f174f4a01',
-                cinemaId: '5fd760d56500c940f174f4a2',
-                name: 'House 1',
-                capacity: 100,
-            },
-            startTime: 1608019165676,
-            prices: {
-                Adult: 100,
-                Student: 60,
-            },
-            occupied: {},
-            occupancyCount: 1,
-        },,
-        {
-            id: '5fd760d56500c940f174f4b0',
-            movie: {
-                id: '5fd760d56500c940f174f4a3',
-                name: 'Helloworld',
-                duration: 100,
-                genres: [
-                    {
-                        id: '5fd760d56500c940f174f4a0',
-                        name: 'Romance',
-                    },
-                ],
-                director: 'Kiwi Chow',
-                description: 'I go to school by bus',
-                imageUrl:
-                    'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
-                rating: 'IIA',
-                cast: ['ME', 'Them'],
-                language: 'Cantonese',
-            },
-            house: {
-                id: '5fd760d56500c940f174f4a01',
-                cinemaId: '5fd760d56500c940f174f4a2',
-                name: 'House 1',
-                capacity: 100,
-            },
-            startTime: 1608019165676,
-            prices: {
-                Adult: 100,
-                Student: 60,
-            },
-            occupied: {},
-            occupancyCount: 1,
-        },
-    ]);
+    
     return (
         <Grid container justify='center' alignItems='center'>
             <Grid container item xs={10} className={'paper-content'}>
