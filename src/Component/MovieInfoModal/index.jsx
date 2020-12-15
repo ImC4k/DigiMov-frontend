@@ -8,12 +8,12 @@ export default class index extends Component {
     super(props);
 
     this.state = {
-      movieInfo: {
+      movie: {
         id: '5fd817c808d4a5464c26de89',
         name: 'Beyond The Dream',
         duration: 120,
         cast: ['Terrance Lau', 'Cecilia Choi'],
-        genres: ['Romance', 'Drama'],
+        genres: [{'name':'Romance'}, {'name':'Drama'}],
         director: 'Kiwi Chow',
         description:
           'Lok (Terrance Lau) is a recovering schizophrenic who yearns for love. One day, he encounters the young and beautiful Yan (Cecilia Choi) and quickly falls in love with her. Just when he struggles whether to tell her about his illness, he has a relapse and becomes delusional. Little does he know that she’s a psychological counselor who has a hidden agenda. The pair develops a relationship that is beyond their wildest dreams.',
@@ -30,63 +30,63 @@ export default class index extends Component {
       <div className={clsx('info-modal')}>
         <img
           className={'movie-poster'}
-          src={this.state.movieInfo.imageUrl}
-          alt={this.state.movieInfo.name}
+          src={this.state.movie.imageUrl}
+          alt={this.state.movie.name}
         />
         <div className={'poster-info-box'}>
           <Grid container justify='center' alignItems='center'>
             <Grid container item xs={10}>
               <Grid container className={'movie-info-modal-name'}>
-                {this.state.movieInfo.name}
+                {this.state.movie.name}
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Description
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.description}
+                {this.state.movie.description}
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Director
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.director}
+                {this.state.movie.director}
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Cast
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.cast.join(', ')}
+                {this.state.movie.cast.join(', ')}
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Run Time
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.duration} minutes
+                {this.state.movie.duration} minutes
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Category
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.rating}
+                {this.state.movie.rating}
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Genre
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.genres.join(', ')}
+                {this.state.movie.genres.map(genre=>genre.name).join(', ')}
               </Grid>
 
               <Grid container className={'movie-info-modal-title'}>
                 Language
               </Grid>
               <Grid container className={'movie-info-modal-content'}>
-                {this.state.movieInfo.language}
+                {this.state.movie.language}
               </Grid>
             </Grid>
           </Grid>
