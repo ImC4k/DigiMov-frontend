@@ -12,9 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import routes from "../../routes.js"
-import { Link } from 'react-router-dom';
-import "./drawer.css";
+import routes from '../../routes.js';
+import { Link, Route, Switch } from 'react-router-dom';
+import './Drawer.css';
 
 const drawerWidth = 150;
 
@@ -48,21 +48,18 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    background: "#f5f5f5 0% 0% no-repeat padding-box",
-    boxShadow: "3px 0px 10px #00000029",
+    background: '#f5f5f5 0% 0% no-repeat padding-box',
+    boxShadow: '3px 0px 10px #00000029',
     border: 0,
   },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -95,21 +92,25 @@ export default function PersistentDrawerLeft() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
-        className={clsx("app-bar-background", classes.appBar, {
+        position='fixed'
+        className={clsx('app-bar-background', classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
-          <Typography className={"app-bar-app-name"} variant="h6" noWrap>
-            Digi<span className={"bold-app-name"}>Mov</span>
+          <Typography className={'app-bar-app-name'} variant='h6' noWrap>
+            Digi<span className={'bold-app-name'}>Mov</span>
           </Typography>
 
           <IconButton
-            aria-label="open drawer"
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx("app-bar-button", classes.menuButton, open && classes.hide)}
+            edge='start'
+            className={clsx(
+              'app-bar-button',
+              classes.menuButton,
+              open && classes.hide
+            )}
           >
             <MenuIcon />
           </IconButton>
@@ -117,8 +118,8 @@ export default function PersistentDrawerLeft() {
       </AppBar>
       <Drawer
         className={classes.drawer}
-        variant="persistent"
-        anchor="left"
+        variant='persistent'
+        anchor='left'
         open={open}
         classes={{
           paper: classes.drawerPaper,
@@ -126,13 +127,23 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
           </IconButton>
         </div>
         <List>
           {routes.map((route, index) => (
             <ListItem button key={route.name}>
-              <Link className={"router-link"} to={route.path} onClick={handleDrawerClose}>{route.description}</Link>
+              <Link
+                className={'router-link'}
+                to={route.path}
+                onClick={handleDrawerClose}
+              >
+                {route.description}
+              </Link>
             </ListItem>
           ))}
         </List>
@@ -142,6 +153,16 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
+        <Switch>
+          {routes.map((route) => (
+            <Route
+              key={route.name}
+              path={route.path}
+              component={route.component}
+              exact
+            />
+          ))}
+        </Switch>
         <div className={classes.drawerHeader} />
       </main>
     </div>
