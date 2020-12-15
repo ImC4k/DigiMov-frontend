@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import moment from 'moment';
-import _ from 'lodash';
 
 function MovieSessionList({ movieSessions }) {
     const movieMap = {};
@@ -10,19 +9,19 @@ function MovieSessionList({ movieSessions }) {
         
         const startTimeMap = startTime.toObject();
     
-        if (map[item.movie.id] == undefined) {
+        if (map[item.movie.id] === undefined) {
             map[item.movie.id] = {};
-            if(movieMap[item.movie.id] == undefined){
+            if(movieMap[item.movie.id] === undefined){
                 movieMap[item.movie.id] = item.movie;
             }
         }
-        if(map[item.movie.id][startTimeMap.year] == undefined){
+        if(map[item.movie.id][startTimeMap.year] === undefined){
             map[item.movie.id][startTimeMap.year] = {};
         }
-        if(map[item.movie.id][startTimeMap.year][startTimeMap.month] == undefined){
+        if(map[item.movie.id][startTimeMap.year][startTimeMap.month] === undefined){
             map[item.movie.id][startTimeMap.year][startTimeMap.month] = {};
         }
-        if(map[item.movie.id][startTimeMap.year][startTimeMap.month][startTimeMap.date]== undefined){
+        if(map[item.movie.id][startTimeMap.year][startTimeMap.month][startTimeMap.date]=== undefined){
             map[item.movie.id][startTimeMap.year][startTimeMap.month][startTimeMap.date] = [];
         }
         item.startTimeInMoment = startTime;
