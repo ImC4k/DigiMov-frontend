@@ -13,13 +13,9 @@
 }
 
 .movie-poster {
-  height: 80%;
-  background-image: url('https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg');
-  background-attachment: fixed;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 100%;
 }
+
 
 .poster-info-box {
   position: absolute;

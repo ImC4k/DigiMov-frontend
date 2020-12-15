@@ -27,15 +27,12 @@ export default class index extends Component {
 
   render() {
     return (
-      <div className={ clsx('info-modal')}>
-        {/* <img
+      <div className={clsx('info-modal')}>
+        <img
           className={'movie-poster'}
           src={this.state.movieInfo.imageUrl}
           alt={this.state.movieInfo.name}
-        /> */}
-
-        <div className={'movie-poster'}></div>
-
+        />
         <div className={'poster-info-box'}>
           <Grid container justify='center' alignItems='center'>
             <Grid container item xs={10}>
