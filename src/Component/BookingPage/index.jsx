@@ -35,11 +35,9 @@ class BookingPage extends Component {
         }
         return (
             <Grid container justify='center' alignItems='center'>
-                
+                <ProgressBar value={30}/>
                     {bookingStage === SEAT_PICKER ?
-                        <div>
-                            seatPicker
-                        </div>
+                        <SeatPickerPage />
                     :
                         <div>
                             payment

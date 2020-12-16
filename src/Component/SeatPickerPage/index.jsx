@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import './SeatPickerPage.css';
 import '../Style/commonStyle.css';
 import clsx from 'clsx';
@@ -109,7 +109,7 @@ export default class index extends Component {
           />
           
           <Grid item xs={12} align='center'>
-            <div className={'seat-picker-proceed-button'}>Proceed</div>
+            <Button className={'seat-picker-proceed-button'}>Proceed</Button>
           </Grid>
         </Grid>
       </Grid>
