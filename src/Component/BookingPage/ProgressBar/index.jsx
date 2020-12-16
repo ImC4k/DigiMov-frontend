@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { LinearProgress } from '@material-ui/core';
+import './ProgressBar.css'
 
 export default class ProgressBar extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class ProgressBar extends Component {
       <LinearProgress
         className={'booking-progress-bar'}
         variant={'determinate'}
-        value={30}
+        value={this.props.value}
       />
     )
   }

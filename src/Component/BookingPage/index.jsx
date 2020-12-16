@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {v4 as uuid} from 'uuid';
 import { Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-
+import ProgressBar from './ProgressBar';
+import SeatPickerPage from '../SeatPickerPage'
 class BookingPage extends Component {
     constructor(props){
         super(props);
@@ -32,17 +33,14 @@ class BookingPage extends Component {
         }
         return (
             <Grid container justify='center' alignItems='center'>
-                <Grid container item xs={10} className={'paper-content'}>
-                    {bookingStage === 1 ?
-                        <div>
-                            seatPicker
-                        </div>
-                    :
-                        <div>
-                            payment
-                        </div>
-                    }
-                </Grid>
+            <ProgressBar value={20} />
+                {bookingStage === 1 ?
+                    <SeatPickerPage />
+                :
+                    <div>
+                        payment
+                    </div>
+                }
             </Grid>
         )
     }

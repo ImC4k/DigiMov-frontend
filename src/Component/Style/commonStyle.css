@@ -11,13 +11,6 @@
   top: 80px;
 }
 
-.booking-progress-bar {
-  position: fixed;
-  top: 56px;
-  width: 100%;
-  background-color: #eaeaea !important;
-}
-
 .MuiLinearProgress-barColorPrimary {
   background-color: #90dd86 !important;
 }
