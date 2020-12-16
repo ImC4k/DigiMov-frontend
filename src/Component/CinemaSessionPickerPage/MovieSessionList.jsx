@@ -1,11 +1,13 @@
 import React from 'react';
 import { Grid, Divider, Modal } from '@material-ui/core';
 import moment from 'moment';
+import { useHistory } from 'react-router-dom';
 
 
 import MovieInfoModal from '../MovieInfoModal';
 
-function MovieSessionList({ movieSessions }) {
+function MovieSessionList({ movieSessions, newBookingSession }) {
+    let history = useHistory();
     const [open, setOpen] = React.useState(false);
     const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
 
@@ -55,13 +57,18 @@ function MovieSessionList({ movieSessions }) {
         }
     */
 
+    const onClickMovieSession = (movieSession) => {
+        newBookingSession(movieSession);
+        history.push('/booking');
+    }
+
     const renderMovieSession = (movieSessions) => {
         return <div>
             <Grid container item xs={12}>
                 {movieSessions[0].startTimeInMoment.format('YYYY-MM-DD')}
             </Grid>
             {movieSessions.map(session => {
-                return session.startTimeInMoment.format('HH:MM')
+                return <div onClick={() => onClickMovieSession(session)}>{session.startTimeInMoment.format('HH:MM')}</div>
             })}
         </div>
 
