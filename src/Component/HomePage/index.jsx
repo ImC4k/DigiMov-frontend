@@ -18,16 +18,16 @@ export default class HomePage extends Component {
 
     render() {
         const movies = this.props.movieList.length > 0 ? (
-            this.props.movieList.map((movie) => (
-                <MovieCard movie={movie} />
+            this.props.movieList.slice(0, 4).map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
             ))
         ) : (<p className={'indicator-text'}>No available movie</p>);
 
         const cinemas =
             this.props.cinemaList.length > 0 ? (
-                this.props.cinemaList.map((cinema) => (
-                    <Grid className={'card'} container item xs={9}>
-                        <CinemaCard key={cinema.id} cinema={cinema} />
+                this.props.cinemaList.slice(0, 4).map((cinema) => (
+                    <Grid key={cinema.id} className={'card'} container item xs={9}>
+                        <CinemaCard cinema={cinema} />
                     </Grid>
                 ))
             ) : (<p className={'indicator-text'}>No available cinema</p>);
@@ -51,11 +51,11 @@ export default class HomePage extends Component {
                             <div className={'section-title'}>Cinemas</div>
                         </Grid>
                         <Grid className={'section-more'} container item xs={4} >
-                            <a href="https://www.w3schools.com">More</a>
+                            <a href="/cinemas">More</a>
                         </Grid>
                     </Grid>
                     <Grid container item justify='center' alignItems='center' xs={12} >
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                             <Grid className={'scrolling-wrapper'} >
                                 <div style={{
                                     padding: "0 5%"

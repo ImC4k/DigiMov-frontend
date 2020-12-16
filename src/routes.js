@@ -7,6 +7,13 @@ import HomePageContainer from './Container/HomePageContainer';
 
 const routes = [
   {
+    name: 'home',
+    path: '/',
+    description: 'Home',
+    component: HomePageContainer,
+    isShowOnDrawer: true
+  },
+  {
     name: 'cinema',
     path: '/cinemas',
     description: 'Cinemas',
@@ -33,13 +40,6 @@ const routes = [
     path: '/booking',
     description: 'Booking',
     component: BookingPageConainer,
-    isShowOnDrawer: false
-  },
-  {
-    name: 'home',
-    path: '/',
-    description: 'Homepage',
-    component: HomePageContainer,
     isShowOnDrawer: false
   }
 ];
