@@ -1,13 +1,14 @@
 import React from 'react';
 import { Grid, Divider, Modal } from '@material-ui/core';
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 
 import MovieInfoModal from '../MovieInfoModal';
 
 function MovieSessionList({ movieSessions, newBookingSession }) {
     let history = useHistory();
+    let {pathname} = useLocation();
     const [open, setOpen] = React.useState(false);
     const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
 
@@ -58,7 +59,7 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
     */
 
     const onClickMovieSession = (movieSession) => {
-        newBookingSession(movieSession);
+        newBookingSession(movieSession, pathname);
         history.push('/booking');
     }
 

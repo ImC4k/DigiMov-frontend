@@ -6,6 +6,7 @@ const mapDispatchToProps = (dispatch) => ({
   
   const mapStateToProps = (state) => ({
     movieSession: state.booking.movieSession,
+    previousPage: state.booking.previousPage,
   });
   const BookingPageConainer = connect(
     mapStateToProps,

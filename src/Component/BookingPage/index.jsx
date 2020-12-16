@@ -10,6 +10,7 @@ class BookingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
+            shouldRedirectToPrevSession : false, 
             bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment
             sessionId : uuid(),
             confirmedSeats : [],
@@ -23,27 +24,39 @@ class BookingPage extends Component {
     proceedFailure = (movieSession) => {
         this.setState({movieSession});
     }
+
+    backToPrevSession = () => {
+        this.setState({shouldRedirectToPrevSession : true})
+    }
     
     render(){
-        const { bookingStage, movieSession } = this.state;
+        const { shouldRedirectToPrevSession, bookingStage, movieSession } = this.state;
 
-        const shouldRedirect = movieSession === undefined;
+        const { previousPage } = this.props;
+
+        const shouldRedirectToHome = movieSession === undefined;
         
-        if( shouldRedirect ){
+        if( shouldRedirectToHome ){
             //expected selected movie session in redux, if not found, redirect to home
             return <Redirect to={'/'}></Redirect>;
         }
+        if( shouldRedirectToPrevSession ){
+            //expected selected movie session in redux, if not found, redirect to home
+            return <Redirect to={previousPage}></Redirect>;
+        }
         return (
             <Grid container justify='center' alignItems='center'>
-                <ProgressBar value={30}/>
-                    {bookingStage === SEAT_PICKER ?
-                        <SeatPickerPage />
-                    :
-                        <div>
-                            payment
-                        </div>
-                    }
-                </Grid>
+                <div onClick={this.backToPrevSession}>Back To Session</div>
+                {bookingStage === SEAT_PICKER ?
+                    <div>
+                        seatPicker
+                    </div>
+                :
+                    <div>
+                        payment
+                    </div>
+                }
+            </Grid>
         )
     }
 }
