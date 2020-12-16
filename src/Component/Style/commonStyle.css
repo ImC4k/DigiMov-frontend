@@ -65,3 +65,7 @@
 .link-style-button:hover {
   color: #79b7ff;
 }
+
+.loading-cirle {
+  color: #6FE0AC !important;
+}

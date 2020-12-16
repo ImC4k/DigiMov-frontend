@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Divider, Grid } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import '../Style/commonStyle.css';
 
 import { getCinema } from '../../apis/cinema';
@@ -11,6 +12,7 @@ import MovieSessionListContainer from '../../Container/CinemaSessionPickerPageCo
 
 function CineamSessionPicker() {
     const cinemaId = useParams().id;
+    const [loadingData, setLoadingData] = useState(true);
     const [cinema, setCinema] = useState(
         useSelector((state) => state.cinemas[cinemaId])
     );
@@ -32,13 +34,12 @@ function CineamSessionPicker() {
         getUpcomingMovieSessionListByCinemaId(cinemaId).then((response) => {
             //Todo: Enhancement update fetched movie to redux
             setMovieSession(response.data);
-            console.log(response.data);
+            setLoadingData(false);
         });
        
     }
 
     },  [cinema, movieSessions.length, cinemaId]);
-    
     
     return (
         <Grid container justify='center' alignItems='center'>
@@ -50,16 +51,13 @@ function CineamSessionPicker() {
                     <div className={'section-header'}>Movies on Show</div>
                 </Grid>
                 {cinema === undefined ? (
-                    <Grid container item xs={12}>
-                        Disconnected from server
-                    </Grid>
+                    loadingData ? 
+                    (<Grid container item xs={12} justify="center"><CircularProgress className={'loading-cirle'}/></Grid>) : 
+                    (<Grid container item xs={12}>Disconnected from server</Grid>)
                 ) : (
                     <Grid container item xs={12}>
-                    
                         <Grid item xs={12}><div className={'section-sub-header'}>{cinema.name}</div></Grid>
-                        
                         <Grid item xs={12}><Divider className='margin-divider'/></Grid>
-                        
                         <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>
                     </Grid>
                 )}
