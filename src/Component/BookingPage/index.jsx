@@ -33,7 +33,7 @@ class BookingPage extends Component {
         }
         return (
             <Grid container justify='center' alignItems='center'>
-                <Grid container item xs={10} className={'paper-content'}>
+                
                     {bookingStage === SEAT_PICKER ?
                         <div>
                             seatPicker
@@ -44,7 +44,6 @@ class BookingPage extends Component {
                         </div>
                     }
                 </Grid>
-            </Grid>
         )
     }
 }
