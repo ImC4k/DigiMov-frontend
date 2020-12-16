@@ -31,20 +31,17 @@ class BookingPage extends Component {
             return <Redirect to={'/'}></Redirect>;
         }
         return (
-            bookingStage === 1 ?
-                <Grid container justify='center' alignItems='center'>
-                    <Grid container item xs={10} className={'paper-content'}>
+            <Grid container justify='center' alignItems='center'>
+                <Grid container item xs={10} className={'paper-content'}>
+                    {bookingStage === 1 ?
                         <div>
                             seatPicker
                         </div>
-                    </Grid>
-                </Grid>
-            :
-            <Grid container justify='center' alignItems='center'>
-                <Grid container item xs={10} className={'paper-content'}>
-                    <div>
-                        payment
-                    </div>
+                    :
+                        <div>
+                            payment
+                        </div>
+                    }
                 </Grid>
             </Grid>
         )
