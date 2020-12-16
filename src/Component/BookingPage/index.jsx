@@ -3,11 +3,12 @@ import {v4 as uuid} from 'uuid';
 import { Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
+const SEAT_PICKER = 1
 class BookingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            bookingStage : 1, //1 : seatPicker 2: payment
+            bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment
             sessionId : uuid(),
             confirmedSeats : [],
             movieSession: this.props.movieSession
@@ -33,7 +34,7 @@ class BookingPage extends Component {
         return (
             <Grid container justify='center' alignItems='center'>
                 <Grid container item xs={10} className={'paper-content'}>
-                    {bookingStage === 1 ?
+                    {bookingStage === SEAT_PICKER ?
                         <div>
                             seatPicker
                         </div>
