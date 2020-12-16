@@ -6,6 +6,30 @@
   color: #000000;
 }
 
+.search-box {
+  margin: 3% 0;
+  font-size: 100%;
+  font-weight: 600;
+  border: none;
+  color: #6b6b6b;
+  transition: font-size 0.2s ease-in-out;
+}
+
+.search-box:focus {
+  font-size: 130%;
+}
+
+.search-box::placeholder {
+  color: #c7c7c7;
+}
+
+.section-sub-header {
+  margin-top: 5px;
+  font-size: x-large;
+  font-weight: 300;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .main-content {
   position: relative;
   top: 80px;
@@ -22,4 +46,27 @@
   font-size: 100%;
   font-weight: 500;
   color: #919191;
+}
+
+.margin-divider {
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+}
+
+.link-style-button {
+  float: right;
+  color: #0076ff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 80%;
+  transition: color 0.3s ease-in-out;
+}
+
+.link-style-button:hover {
+  color: #79b7ff;
+}
+
+.loading-cirle {
+  margin-top: 50%;
+  color: #6fe0ac !important;
 }
