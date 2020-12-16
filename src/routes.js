@@ -37,7 +37,7 @@ const routes = [
   },
   {
     name: 'home',
-    path: '/home',
+    path: '/',
     description: 'Homepage',
     component: HomePageContainer,
     isShowOnDrawer: false
@@ -45,3 +45,6 @@ const routes = [
 ];
 
 export default routes;
+
+
+
