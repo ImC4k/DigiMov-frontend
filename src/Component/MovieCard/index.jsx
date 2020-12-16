@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { ERROR_IMAGE } from '../../assets';
-import { Grid, Chip } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import './MovieCard.css';
 import '../Style/commonStyle.css'
 
@@ -76,7 +76,6 @@ class index extends Component {
                         </Grid>
                     </Grid>
                 </Grid>
-                
             );
         }
     }
