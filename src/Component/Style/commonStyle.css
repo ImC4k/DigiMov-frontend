@@ -7,11 +7,16 @@
 }
 
 .search-box {
-  margin-top: 1%;
-  font-size: 130%;
+  margin: 3% 0;
+  font-size: 100%;
   font-weight: 600;
   border: none;
   color: #6b6b6b;
+  transition: font-size 0.2s ease-in-out;
+}
+
+.search-box:focus {
+  font-size: 130%;
 }
 
 .search-box::placeholder {

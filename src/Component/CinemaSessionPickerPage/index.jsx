@@ -146,7 +146,7 @@ function CineamSessionPicker() {
     return (
         <Grid container justify='center' alignItems='center'>
             <Grid container item xs={10} className='custom-breadcrumbs' onClick={() => history.push('/cinemas')}>
-                <div>Back To Cinemas</div>
+                <div>Cinemas /</div>
             </Grid>
             <Grid container item xs={10} className={'main-content'}>
                 <Grid container item xs={12}>
