@@ -1,4 +1,5 @@
 import CinemaListPageContainer from './Container/CinemaListPageContainer';
+import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 
 const routes = [
   {
@@ -6,6 +7,14 @@ const routes = [
     path: '/cinemas',
     description: 'Cinemas',
     component: CinemaListPageContainer,
+  },
+
+  // Testing route
+  {
+    name: 'seatpicker',
+    path: '/seatpicker',
+    description: 'Seatpicker',
+    component: SeatPickerPageContainer,
   },
 ];
 

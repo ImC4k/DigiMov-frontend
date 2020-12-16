@@ -1,0 +1,30 @@
+.section-header {
+  font-weight: 700;
+  font-size: 180%;
+  text-align: left;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #000000;
+}
+
+.main-content {
+  position: relative;
+  top: 80px;
+}
+
+.booking-progress-bar {
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  background-color: #eaeaea !important;
+}
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: #90dd86 !important;
+}
+
+.custom-breadcrumbs {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  font-weight: 500;
+  color: #919191;
+}
