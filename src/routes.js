@@ -2,9 +2,17 @@ import BookingPageConainer from './Container/BookingPageContainer';
 import CinemaListPageContainer from './Container/CinemaListPageContainer';
 import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
+import HomePageContainer from './Container/HomePageContainer';
 
 
 const routes = [
+  {
+    name: 'home',
+    path: '/',
+    description: 'Home',
+    component: HomePageContainer,
+    isShowOnDrawer: true
+  },
   {
     name: 'cinema',
     path: '/cinemas',
@@ -37,3 +45,6 @@ const routes = [
 ];
 
 export default routes;
+
+
+

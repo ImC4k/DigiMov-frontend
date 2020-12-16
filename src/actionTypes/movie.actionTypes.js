@@ -1,0 +1,1 @@
+export const INIT_MOVIE_LIST = 'INIT_MOVIE_LIST';
