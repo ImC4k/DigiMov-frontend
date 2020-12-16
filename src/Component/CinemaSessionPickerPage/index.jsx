@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Divider, Grid } from '@material-ui/core';
+import '../Style/commonStyle.css';
 
 import { getCinema } from '../../apis/cinema';
 
@@ -144,12 +145,12 @@ function CineamSessionPicker() {
     
     return (
         <Grid container justify='center' alignItems='center'>
-            <Grid container item xs={10} className={'paper-content'}>
-                <Grid container item xs={12} onClick={() => history.push('/cinemas')}>
-                    <div>Back To Cinemas</div>
-                </Grid>
+            <Grid container item xs={10} className='custom-breadcrumbs' onClick={() => history.push('/cinemas')}>
+                <div>Back To Cinemas</div>
+            </Grid>
+            <Grid container item xs={10} className={'main-content'}>
                 <Grid container item xs={12}>
-                    <div className={'section-title'}>Movies on Show</div>
+                    <div className={'section-header'}>Movies on Show</div>
                 </Grid>
                 {cinema === undefined ? (
                     <Grid container item xs={12}>
@@ -160,10 +161,10 @@ function CineamSessionPicker() {
                     
                         <div>
                             <Grid container item xs={12}>
-                                <div className={'sub-section-title'}>{cinema.name}</div>
+                                <div className={'section-sub-header'}>{cinema.name}</div>
                             </Grid>
                         </div>
-                        <Divider/>
+                        <Divider className='margin-divider'/>
                         <MovieSessionListContainer movieSessions= {movieSessions}/>
                     </div>
                 )}
