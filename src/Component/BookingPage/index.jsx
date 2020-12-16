@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import {v4 as uuid} from 'uuid';
 import { Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
+import ProgressBar from './ProgressBar';
+import SeatPickerPage from '../SeatPickerPage'
+import '../Style/commonStyle.css'
 
-const SEAT_PICKER = 1;
-
+const SEAT_PICKER = 1
 class BookingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
+            shouldRedirectToPrevSession : false, 
             bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment
             sessionId : uuid(),
             confirmedSeats : [],
@@ -22,16 +25,27 @@ class BookingPage extends Component {
     proceedFailure = (movieSession) => {
         this.setState({movieSession});
     }
+
+    backToPrevSession = () => {
+        this.setState({shouldRedirectToPrevSession : true})
+    }
     
     render(){
-        const { bookingStage, movieSession } = this.state;
+        const { shouldRedirectToPrevSession, bookingStage, movieSession } = this.state;
 
-        const shouldRedirect = movieSession === undefined;
+        const { previousPage } = this.props;
+
+        const shouldRedirectToHome = movieSession === undefined;
         
-        if( shouldRedirect ){
+        if( shouldRedirectToHome ){
             //expected selected movie session in redux, if not found, redirect to home
             return <Redirect to={'/'}></Redirect>;
         }
+        if( shouldRedirectToPrevSession ){
+            //expected selected movie session in redux, if not found, redirect to home
+            return <Redirect to={previousPage}></Redirect>;
+        }
+
         return (
             <Grid container justify='center' alignItems='center'>
                 <Grid container item xs={10} className={'paper-content'}>
@@ -45,6 +59,13 @@ class BookingPage extends Component {
                         </div>
                     }
                 </Grid>
+                {bookingStage === SEAT_PICKER ?
+                    <SeatPickerPage movieSession={movieSession}/>
+                :
+                    <div>
+                        payment
+                    </div>
+                }
             </Grid>
         )
     }
