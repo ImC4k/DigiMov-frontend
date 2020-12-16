@@ -157,16 +157,14 @@ function CineamSessionPicker() {
                         Disconnected from server
                     </Grid>
                 ) : (
-                    <div>
+                    <Grid container item xs={12}>
                     
-                        <div>
-                            <Grid container item xs={12}>
-                                <div className={'section-sub-header'}>{cinema.name}</div>
-                            </Grid>
-                        </div>
-                        <Divider className='margin-divider'/>
-                        <MovieSessionListContainer movieSessions= {movieSessions}/>
-                    </div>
+                        <Grid item xs={12}><div className={'section-sub-header'}>{cinema.name}</div></Grid>
+                        
+                        <Grid item xs={12}><Divider className='margin-divider'/></Grid>
+                        
+                        <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>
+                    </Grid>
                 )}
             </Grid>
         </Grid>
