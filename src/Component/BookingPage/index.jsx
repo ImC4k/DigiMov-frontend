@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import ProgressBar from './ProgressBar';
 import SeatPickerPage from '../SeatPickerPage'
+import '../Style/commonStyle.css'
 
 const SEAT_PICKER = 1
 class BookingPage extends Component {
@@ -44,13 +45,15 @@ class BookingPage extends Component {
             //expected selected movie session in redux, if not found, redirect to home
             return <Redirect to={previousPage}></Redirect>;
         }
+
         return (
             <Grid container justify='center' alignItems='center'>
-                <div onClick={this.backToPrevSession}>Back To Session</div>
+                <ProgressBar value={30}/>
+                <Grid container item xs={10} className={'custom-breadcrumbs'} onClick={this.backToPrevSession}>
+                    Sessions /
+                </Grid>
                 {bookingStage === SEAT_PICKER ?
-                    <div>
-                        seatPicker
-                    </div>
+                    <SeatPickerPage movieSession={movieSession}/>
                 :
                     <div>
                         payment

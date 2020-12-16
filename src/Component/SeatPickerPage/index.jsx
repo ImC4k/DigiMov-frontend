@@ -63,7 +63,7 @@ export default class index extends Component {
   };
 
   render() {
-    const session = this.state.movieSessionResponse;
+    const session = this.props.movieSession;
     const startDate = new Date(session.startTime).toLocaleDateString(
       'zh-Hans-CN'
     );
@@ -78,9 +78,6 @@ export default class index extends Component {
         <Grid item xs={1}></Grid>
         <Grid container item xs={10} className={'main-content'}>
           <Grid container item xs={12}>
-            <Grid container className={'custom-breadcrumbs'}>
-            Sessions /
-            </Grid>
             <Grid container className={'section-header'}>
               Seats
             </Grid>

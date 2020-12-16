@@ -16,6 +16,8 @@
 }
 
 .custom-breadcrumbs {
+  position: relative;
+  top: 80px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 100%;
   font-weight: 500;
