@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Divider, Modal } from '@material-ui/core';
+import { Grid, Divider, Modal, Input } from '@material-ui/core';
 import moment from 'moment';
 import { useLocation, useHistory } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
     let {pathname} = useLocation();
     const [open, setOpen] = React.useState(false);
     const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
+    const [keyword, setKeyword] = React.useState("");
 
     const handleOpen = (movieInfoInModal) => {
         setOpen(true);
@@ -64,12 +65,12 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
     }
 
     const renderMovieSession = (movieSessions) => {
-        return <div>
+        return <div key={movieSessions[0].startTimeInMoment.format('YYYY-MM-DD')}>
             <Grid container item xs={12}>
                 {movieSessions[0].startTimeInMoment.format('YYYY-MM-DD')}
             </Grid>
             {movieSessions.map(session => {
-                return <div onClick={() => onClickMovieSession(session)}>{session.startTimeInMoment.format('HH:MM')}</div>
+                return <div key={session.id} onClick={() => onClickMovieSession(session)}>{session.startTimeInMoment.format('HH:mm')}</div>
             })}
         </div>
 
@@ -77,9 +78,20 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
 
     const renderMovieSessions = (
         <div>
-        { Object.keys(movieMap).map((movieId) => {  
+            <Input
+                //addonBefore="Search"
+                placeholder="Search by name"
+                //allowClear
+                value={keyword}
+                onChange={(event) => setKeyword(event.target.value)}
+          />
+        { Object.keys(movieMap).filter(function (movieId) {
+            return keyword === ""
+              ? true
+              : movieMap[movieId].name.toLowerCase().indexOf(keyword.toLowerCase()) >= 0; //force toLowerCase to ignore case
+          }).map((movieId) => {  
             return (
-                <div>
+                <div key={movieId}>
                     <Grid container item xs={12}>
                         {movieMap[movieId].name} <div onClick={() => handleOpen(movieMap[movieId])}>More details</div>
                     </Grid>

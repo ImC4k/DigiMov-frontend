@@ -69,7 +69,7 @@ function CineamSessionPicker() {
                 occupancyCount: 1,
             },
             {
-                id: '5fd760d56500c940f174f4b0',
+                id: '5fd760d5650c0940f174f4b2',
                 movie: {
                     id: '5fd760d56500c940f174f4a0',
                     name: 'Beyond the dream',
@@ -103,7 +103,7 @@ function CineamSessionPicker() {
                 occupancyCount: 1,
             },
             {
-                id: '5fd760d56500c940f174f4b0',
+                id: '5fd760d56500c940f174f4b3',
                 movie: {
                     id: '5fd760d56500c940f174f4a3',
                     name: 'Helloworld',
