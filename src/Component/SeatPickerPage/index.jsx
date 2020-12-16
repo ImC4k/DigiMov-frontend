@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Grid, LinearProgress } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import './SeatPickerPage.css';
 import '../Style/commonStyle.css';
 import clsx from 'clsx';
 import SeatPickerTable from './SeatPickerTable.jsx';
-import { NavLink } from "react-router-dom";
 
 export default class index extends Component {
   constructor(props) {
@@ -76,11 +75,6 @@ export default class index extends Component {
 
     return (
       <Grid container>
-        <LinearProgress
-          className={'booking-progress-bar'}
-          variant={'determinate'}
-          value={30}
-        />
         <Grid item xs={1}></Grid>
         <Grid container item xs={10} className={'main-content'}>
           <Grid container item xs={12}>
