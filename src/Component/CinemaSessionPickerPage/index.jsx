@@ -56,7 +56,7 @@ function CineamSessionPicker() {
                 },
                 house: {
                     id: '5fd760d56500c940f174f4a01',
-                    cinemaId: '5fd760d56500c940f174f4a2',
+                    cinemaId: '5fd760d56500c940f174f4b2',
                     name: 'House 1',
                     capacity: 100,
                 },
@@ -90,7 +90,7 @@ function CineamSessionPicker() {
                 },
                 house: {
                     id: '5fd760d56500c940f174f4a01',
-                    cinemaId: '5fd760d56500c940f174f4a2',
+                    cinemaId: '5fd760d56500c940f174f4b2',
                     name: 'House 1',
                     capacity: 100,
                 },
@@ -124,7 +124,7 @@ function CineamSessionPicker() {
                 },
                 house: {
                     id: '5fd760d56500c940f174f4a01',
-                    cinemaId: '5fd760d56500c940f174f4a2',
+                    cinemaId: '5fd760d56500c940f174f4b2',
                     name: 'House 1',
                     capacity: 100,
                 },
