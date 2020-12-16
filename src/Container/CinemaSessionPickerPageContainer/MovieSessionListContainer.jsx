@@ -3,7 +3,7 @@ import MovieSessionList from "../../Component/CinemaSessionPickerPage/MovieSessi
 import { newBookingSession } from '../../actions/booking.action';
 
 const mapDispatchToProps = (dispatch) => ({
-    newBookingSession: (movieSession) => dispatch(newBookingSession(movieSession)),
+    newBookingSession: (movieSession, previousPage) => dispatch(newBookingSession(movieSession, previousPage)),
 });
 
 const mapStateToProps = (state) => ({
