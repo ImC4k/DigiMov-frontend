@@ -10,14 +10,6 @@
   color: #000000;
 }
 
-.search-box {
-  margin-top: 1%;
-  font-size: 130%;
-  font-weight: 500;
-  border: none;
-  color: #6b6b6b;
-}
-
 input.search-box:focus {
   outline: none;
 }
