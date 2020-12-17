@@ -139,6 +139,10 @@ class PaymentPage extends Component {
   onClickMakePaymentButton = () => {
     //todo: add api, show payment complete modal and redirect to resultPage
     console.log(this.state.requestOrder);
+    //DEBUGGING START
+    const TestingID = "123";
+    this.props.paymentComplete(TestingID);
+    //DEBUGGING END
   };
   render() {
     const { movieSession, confirmedSeats } = this.props;
