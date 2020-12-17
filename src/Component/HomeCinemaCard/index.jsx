@@ -1,8 +1,3 @@
-// import Card, CardActionArea, CardMedia  from "@material-ui/core";
-// import React, { Component } from 'react';
-// import './HomeCinemaCard.css';
-// import { ERROR_IMAGE } from './../../assets';
-
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -31,7 +26,7 @@ class HomeCinemaCard extends Component {
 
     render() {
         const { shouldRedirect } = this.state;
-        const { name, address, id } = this.props.cinema;
+        const { id } = this.props.cinema;
         if (shouldRedirect) {
             return this.redirectToCinemaSession(id);
         } else {
