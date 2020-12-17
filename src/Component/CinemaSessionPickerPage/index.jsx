@@ -27,6 +27,8 @@ function CineamSessionPicker() {
             getCinema(cinemaId).then((response) => {
                 //Todo: Enhancement update fetched movie to redux
                 setCinema(response.data);
+            }).finally(() => {
+                setLoadingData(false)
             });
         }
        if(movieSessions.length === 0){

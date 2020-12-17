@@ -3,6 +3,7 @@ import CinemaListPageContainer from './Container/CinemaListPageContainer';
 import MovieListPageContainer from './Container/MovieListPageContainer'
 import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
+import MovieSessionPickerPageContainer from './Container/MovieSessionPickerPageContainer/MovieSessionPickerPageContainer'
 import HomePageContainer from './Container/HomePageContainer';
 import ResultPageContainer from './Container/ResultPageContainer';
 
@@ -28,6 +29,13 @@ const routes = [
     description: 'Movies',
     component: MovieListPageContainer,
     isShowOnDrawer: true
+  },
+  {
+    name: 'movie',
+    path: '/movies/:id',
+    description: 'MoviesSessionPicker',
+    component: MovieSessionPickerPageContainer,
+    isShowOnDrawer: false
   },
 
   // Testing route
