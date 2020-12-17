@@ -1,7 +1,7 @@
 import './PaymentResultPage.css';
 import '../Style/commonStyle.css';
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import { Grid, Button, CircularProgress } from '@material-ui/core';
 import QRCode from 'qrcode.react';
 import moment from 'moment';
@@ -17,11 +17,10 @@ function getWindowDimensions() {
     height,
   };
 }
-const { REACT_APP_FRONTEND_API } = process.env;
+const { REACT_APP_BACKEND_API } = process.env;
 
 const PaymentRequestPage = ({setOrderId}) => {
     let history = useHistory();
-    const location = useLocation();
     const orderId = useParams().id;
     const windowDimensions = getWindowDimensions();
 
@@ -151,7 +150,7 @@ const PaymentRequestPage = ({setOrderId}) => {
           <Grid container item xs={12}>
             <QRCode
               size={windowDimensions.width * 0.8}
-              value={REACT_APP_FRONTEND_API + location.pathname}
+              value={REACT_APP_BACKEND_API + 'orders/' + orderId}
               className='qrcode'
             />
           </Grid>
