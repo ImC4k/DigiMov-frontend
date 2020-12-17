@@ -1,0 +1,12 @@
+.check-circle-icon {
+    color: #6FE0AC !important;
+    margin-top: 40%;
+    width: 60% !important;
+    height: 60% !important;
+}
+
+.order-complete-message {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    font-weight: 300;
+}

@@ -5,6 +5,7 @@ import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
 import HomePageContainer from './Container/HomePageContainer';
 import ResultPageContainer from './Container/ResultPageContainer';
+import OrderCompletePage from './Component/OrderCompletePage';
 
 
 const routes = [
@@ -36,6 +37,14 @@ const routes = [
     path: '/seatpicker',
     description: 'Seatpicker',
     component: SeatPickerPageContainer,
+  },
+  // Testing order complete 
+  {
+    name: 'ordercomplete',
+    path: '/ordercomplete',
+    description: 'OrderComplete',
+    component: OrderCompletePage,
+    isShowOnDrawer: false
   },
   {
     name: 'cinema',
