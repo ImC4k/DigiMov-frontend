@@ -3,9 +3,11 @@ import CinemaListPageContainer from './Container/CinemaListPageContainer';
 import MovieListPageContainer from './Container/MovieListPageContainer'
 import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
+import MovieSessionPickerPageContainer from './Container/MovieSessionPickerPageContainer/MovieSessionPickerPageContainer'
 import HomePageContainer from './Container/HomePageContainer';
 import EditSeatPickerPageContainer from './Container/EditSeatPickerPageContainer';
 import ResultPageContainer from './Container/ResultPageContainer';
+import OrderCompletePage from './Component/OrderCompletePage';
 
 
 const routes = [
@@ -34,7 +36,13 @@ const routes = [
     name: 'editseatpicker',
     path: '/editseatpicker',
     description: 'EditSeatPicker',
-    component: EditSeatPickerPageContainer,
+    component: EditSeatPickerPageContainer
+  },
+  { 
+    name: 'movie',
+    path: '/movies/:id',
+    description: 'MoviesSessionPicker',
+    component: MovieSessionPickerPageContainer,
     isShowOnDrawer: false
   },
 
@@ -44,6 +52,14 @@ const routes = [
     path: '/seatpicker',
     description: 'Seatpicker',
     component: SeatPickerPageContainer,
+  },
+  // Testing order complete 
+  {
+    name: 'ordercomplete',
+    path: '/ordercomplete',
+    description: 'OrderComplete',
+    component: OrderCompletePage,
+    isShowOnDrawer: false
   },
   {
     name: 'cinema',

@@ -124,8 +124,7 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
                     More details
                 </Grid>
 
-              
-              <Grid container item xs={12}>
+              <Grid container item xs={12} className={'session-picker-sessions-dropdown-list'}>
                 {Object.keys(movieSessionMap[movieId]).map(
                   (movieSessionByYear) => {
                     return Object.keys( movieSessionMap[movieId][movieSessionByYear]).map((movieSessionByMonth) => {

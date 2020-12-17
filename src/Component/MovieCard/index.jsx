@@ -56,7 +56,7 @@ class index extends Component {
                             Genre
                         </Grid>
                         <Grid container item xs={12} className={'movie-info-content'}>
-                            {genres.map(genre=><div key={genre} className={'movie-info-genre'}>{genre.name}</div>)}
+                            {genres.map(genre=><div key={genre.id} className={'movie-info-genre'}>{genre.name}</div>)}
                         </Grid>
                         <Grid container item xs={12} className={'movie-info-title'}>
                             Language
@@ -70,9 +70,9 @@ class index extends Component {
                         <Grid container item xs={12} className={'movie-info-content'}>
                             {director}
                         </Grid>
-                        <Grid container item xs={12} className={'movie-info-content'}>
+                        <Grid container item xs={12}>
                             <Grid container item xs={6} className={'link-style-button'} onClick={() => this.toggleMovieCard()}>Book tickets</Grid>
-                            <Grid container item xs={6} className={'link-style-button'} onClick={() => this.onClickMoreDetails()}>More detail</Grid>
+                            <Grid container item xs={6} justify='flex-end' className={'link-style-button'} onClick={() => this.onClickMoreDetails()}>More detail</Grid>
                         </Grid>
                     </Grid>
                 </Grid>

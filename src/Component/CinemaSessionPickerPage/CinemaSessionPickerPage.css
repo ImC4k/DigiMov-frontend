@@ -6,20 +6,20 @@
   color: #646464;
 }
 
+.session-picker-sessions-dropdown-list {
+  margin: 5% 0 !important;
+}
+
 .session-picker-sessions-dropdown {
-  font-size: 90%;
+  font-size: 80%;
   font-weight: 400;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
   box-shadow: 0px 3px 6px #48484829 !important;
-  border-radius: 5px;
-  margin-top: 5% !important;
-  margin-bottom: 5% !important;
 }
 
 .dropdown-header {
   background-color: #e3e3e3 !important;
-  border-radius: 5px 5px 0px 0px !important;
   color: black;
 }
 
@@ -30,7 +30,8 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 2px 2px 10px #0000001a;
   border-radius: 5px;
-  padding: 1% 5%;
+  width: 25% !important;
+  text-align: center;
   margin: 0 2%;
   transition: background-color 0.3s ease-in-out;
 }
