@@ -39,9 +39,5 @@
 .scrolling-wrapper .home-cinema-card {
   display: inline-flex;
   flex: 0 0 auto;
-}
-
-.information {
-    width: 100vw;
-    overflow-x: hidden;
+  margin-bottom: 10% !important;
 }

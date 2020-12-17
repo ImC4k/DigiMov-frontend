@@ -34,7 +34,7 @@ class HomeCinemaCard extends Component {
                 <Grid container item xs={12}>
                     <Grid className={'card'} container item xs={12}>
                         <Card
-                            className={'custom-card'}
+                            className={'home-cinema-card-shadow'}
                             onClick={() => this.toggleCinemaCard()}
                         >
                             <CardActionArea>

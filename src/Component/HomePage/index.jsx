@@ -58,9 +58,9 @@ export default class HomePage extends Component {
       );
 
     return (
-      <Grid container justify='center' alignItems='center' className={'information'} xs={12}>
+      <Grid container justify='center' alignItems='center' xs={12}>
         <Grid container item xs={10} className={'main-content'}>
-          <Grid container item xs={12} alignItems={'flex-end'}>
+          <Grid container item xs={12} alignItems={'center'}>
             <Grid container item xs={8}>
               <div className={'section-header'}>New Movies</div>
             </Grid>
@@ -71,7 +71,8 @@ export default class HomePage extends Component {
           <Grid container item justify='center' alignItems='center' xs={12}>
             {movies}
           </Grid>
-          <Grid container item xs={12} alignItems={'flex-end'}>
+
+          <Grid container item xs={12} alignItems={'center'}>
             <Grid container item xs={8}>
               <div className={'section-header'}>Cinemas</div>
             </Grid>
@@ -79,7 +80,8 @@ export default class HomePage extends Component {
               <a href='/cinemas' className={'link-style-button'}>More</a>
             </Grid>
           </Grid>
-          <Grid container item justify='center' alignItems='center' xs={12}>
+
+          <Grid container item justify='center' alignItems='center' xs={12} style={{marginBottom: '2rem'}}>
               <Grid className={'scrolling-wrapper'}>
                 <div>
                   {cinemas}
