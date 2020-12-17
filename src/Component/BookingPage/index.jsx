@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import {v4 as uuid} from 'uuid';
 import { Redirect } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-import ProgressBar from './ProgressBar';
+
 import SeatPickerPage from '../SeatPickerPage'
+import PaymentPage from '../PaymentPage'
+
 import '../Style/commonStyle.css'
 
 const SEAT_PICKER = 1
+const PAYMENT = 2
 class BookingPage extends Component {
     constructor(props){
         super(props);
@@ -19,7 +22,7 @@ class BookingPage extends Component {
         }
     }
     proceedSuccess = (confirmedSeats, movieSession) =>{
-        this.setState({confirmedSeats, movieSession});
+        this.setState({confirmedSeats, movieSession, bookingStage: PAYMENT});
     }
 
     proceedFailure = (movieSession) => {
@@ -31,7 +34,7 @@ class BookingPage extends Component {
     }
     
     render(){
-        const { shouldRedirectToPrevSession, bookingStage, movieSession } = this.state;
+        const { shouldRedirectToPrevSession, bookingStage, movieSession, confirmedSeats, sessionId } = this.state;
 
         const { previousPage } = this.props;
 
@@ -48,16 +51,10 @@ class BookingPage extends Component {
 
         return (
             <Grid container justify='center' alignItems='center'>
-                <ProgressBar value={30}/>
-                <Grid container item xs={10} className={'custom-breadcrumbs'} onClick={this.backToPrevSession}>
-                    Sessions /
-                </Grid>
                 {bookingStage === SEAT_PICKER ?
-                    <SeatPickerPage movieSession={movieSession}/>
+                    <SeatPickerPage movieSession={movieSession} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
                 :
-                    <div>
-                        payment
-                    </div>
+                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} sessionId={sessionId}/>
                 }
             </Grid>
         )
