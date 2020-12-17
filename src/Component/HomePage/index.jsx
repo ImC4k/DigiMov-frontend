@@ -58,7 +58,7 @@ export default class HomePage extends Component {
       );
 
     return (
-      <Grid container justify='center' alignItems='center' xs={12}>
+      <Grid container item justify='center' alignItems='center' xs={12}>
         <Grid container item xs={10} className={'main-content'}>
           <Grid container item xs={12} alignItems={'center'}>
             <Grid container item xs={8}>
