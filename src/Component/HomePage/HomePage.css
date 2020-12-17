@@ -34,15 +34,20 @@
   padding: 10px;
 }
 
+.home-cinema-card {
+  padding: 0px;
+  height: 150px;
+}
+
 .scrolling-wrapper {
   -webkit-overflow-scrolling: touch;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  width: 100vw;
+  width: 80vw;
 }
 
-.scrolling-wrapper .card {
+.scrolling-wrapper .home-cinema-card {
   display: inline-flex;
   flex: 0 0 auto;
 }
