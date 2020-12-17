@@ -1,34 +1,51 @@
-.custom-card {
-  margin-top: 10%;
-  width: 400%;
-  border-radius: 10px !important;
-  box-shadow: 0px 3px 6px #00000029 !important;
+.movie-card {
+    width: 400%;
+    margin-bottom: 5%;
 }
 
-.card-title {
-  font-weight: 600 !important;
-  font-size: 150% !important;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #646464;
+.movie-info {
+    padding-left: 5% !important; 
+}
+  
+.movie-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px !important;
+    box-shadow: 0px 5px 8px #00000029;
 }
 
-.card-image {
-  height: 200px;
+.movie-info-name {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000000;
+    font-weight: 700;
+    font-size: medium;
 }
 
-.card-description {
-  font-size: 100% !important;
+.movie-info-title {
+    margin-top: 3% !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #000000;
+    font-weight: 600;
+    font-size: small;
 }
 
-.name {
-  text-align: center;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: 0px;
-  color: #303030;
-  opacity: 1;
-  font-size: 12px;
+.movie-info-content {
+    margin-bottom: 3% !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #4d4d4d;
+    font-size: x-small;
 }
 
-.name p {
-  margin: 0 auto;
+.movie-info-genre {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #ffffff;
+    font-size: x-small;
+    font-weight: 600;
+    background-color: #C3C3C3;
+    padding: .1rem .4rem;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    border-radius: 5% !important;
 }
