@@ -43,7 +43,7 @@ function MovieSessionPicker() {
                 setMovie(response.data);
             }).finally(() => {
                 setLoadingData(false);
-                setGetMovieRetryCounter(getMovieSessionRetryCounter - 1);
+                setGetMovieRetryCounter(getMovieRetryCounter - 1);
             });
         }
         
@@ -59,7 +59,7 @@ function MovieSessionPicker() {
             });
         }
     }
-    ,[movieId, movie, movieSessions]);
+    ,[movieId, movie, movieSessions, getMovieSessionRetryCounter, getMovieRetryCounter]);
     
     return (
         <Grid container justify='center' alignItems='center'>
