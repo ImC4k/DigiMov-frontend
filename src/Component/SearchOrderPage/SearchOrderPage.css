@@ -1,0 +1,81 @@
+.paper-content {
+  margin-top: 80px !important;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 180%;
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000000;
+}
+
+.movie-title {
+  font-weight: 500;
+  font-size: 150%;
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000000;
+}
+
+.payment-proceed-button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  /* color: white !important;
+    background-color: #6e6e6e !important; */
+  border-radius: 0 !important;
+  font-size: larger !important;
+  font-weight: 500;
+  padding: 4% !important;
+  width: 100%;
+  text-transform: capitalize !important;
+}
+
+.payment-movie-name {
+  margin-top: 5px;
+  font-size: x-large;
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.payment-session-time {
+  font-size: large;
+  font-weight: 200;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.payment-session-house {
+  font-size: large;
+  font-weight: 200;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.payment-picked-seat-text {
+  margin-top: 5px;
+  font-size: large;
+  font-weight: 300;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.payment-price-type {
+  font-size: x-large;
+  font-weight: 200;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.payment-price {
+  font-size: large;
+  font-weight: 200;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.payment-proceed-button-section {
+  margin-top: 5% !important;
+}
+
+.payment-quantity-picker-card {
+  width: 100%;
+}
+
+.input {
+    width: 100%;
+}
