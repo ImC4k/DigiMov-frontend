@@ -4,14 +4,16 @@ import { getAllMovies } from '../../apis/movie';
 import './MovieListPage.css';
 import '../Style/commonStyle.css'
 import { Grid, Modal } from '@material-ui/core';
+import CircularLoading from '../Style/CircularLoading'
 
 
 import MovieInfoModal from '../MovieInfoModal';
 
-function MovieListPage(props) {
+function MovieListPage({initMovieList, movieList}) {
     const [open, setOpen] = React.useState(false);
     const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
     const [keyword, setKeyword] = useState("");
+    const [loadingData, setLoadingData] = useState(true);
 
     const handleOpen = (movieInfoInModal) => {
         setOpen(true);
@@ -24,15 +26,16 @@ function MovieListPage(props) {
 
     useEffect(() => {
         getAllMovies().then((response) => {
-            props.initMovieList(response.data);
+            initMovieList(response.data);
+            setLoadingData(false);
           });
-      });
+      },[initMovieList]);
 
     const changeKeyWord = (event) => {
         setKeyword(event.target.value);
       }
 
-    var filteredMovieList = props.movieList;
+    var filteredMovieList = movieList;
     if (keyword !== "") {
     filteredMovieList = filteredMovieList.filter(movie => 
         movie.name.toLowerCase().includes(keyword.toLowerCase())
@@ -45,7 +48,9 @@ function MovieListPage(props) {
         return <MovieCard key={movie.id} movie={movie} onClickMoreDetails={handleOpen}/>
         })
     ) : (
-        <p className={'indicator-text'}>No available movie</p>
+        (loadingData ? 
+            (<Grid container item xs={12} justify='center'><CircularLoading/></Grid>) : 
+            (<p className={'indicator-text'}>No available movie</p>))
         );
 
     const renderMovieList = (

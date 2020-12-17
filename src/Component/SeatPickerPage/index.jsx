@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import './SeatPickerPage.css';
 import '../Style/commonStyle.css';
-import clsx from 'clsx';
 import SeatPickerTable from './SeatPickerTable.jsx';
 
 export default class index extends Component {
@@ -101,7 +100,7 @@ export default class index extends Component {
         <Grid
           item
           xs={12}
-          className={clsx('main-content', 'seat-picker-section')}
+          className={'seat-picker-section'}
         >
           <Grid item xs={12} className={'seat-picker-house-name'}>
             {session.house.name}

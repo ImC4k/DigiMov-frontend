@@ -4,7 +4,7 @@ import { getAllCinemas } from '../../apis/cinema';
 import '../Style/commonStyle.css';
 import './CinemaListPage.css';
 import { Grid } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularLoading from '../Style/CircularLoading';
 class index extends Component {
   constructor(props) {
     super(props)
@@ -32,7 +32,7 @@ class index extends Component {
       filteredCinemaList.length > 0 ? 
         (filteredCinemaList.map((cinema) => { return <CinemaCard key={cinema.id} cinema={cinema} /> })) : 
         (this.state.loadingData ? 
-          (<Grid container item xs={12} justify='center'><CircularProgress className={'loading-cirle'}/></Grid>) : 
+          (<Grid container item xs={12} justify='center'><CircularLoading/></Grid>) : 
           (<p className={'indicator-text'}>No available cinema</p>));
 
     return (
