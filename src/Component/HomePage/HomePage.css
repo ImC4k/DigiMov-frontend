@@ -1,0 +1,53 @@
+.paper-content {
+  margin-top: 80px !important;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 180%;
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000000;
+}
+
+.section-more {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.section-more a {
+  font-size: 180%;
+  text-decoration: none;
+  color: #0076ff;
+  text-align: right;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.indicator-text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #7c7c7c;
+}
+
+.card {
+  padding: 10px;
+}
+
+.scrolling-wrapper {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100vw;
+}
+
+.scrolling-wrapper .card {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.information {
+    width: 100vw;
+    overflow-x: hidden;
+}

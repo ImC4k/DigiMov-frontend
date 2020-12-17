@@ -1,16 +1,41 @@
 import BookingPageConainer from './Container/BookingPageContainer';
 import CinemaListPageContainer from './Container/CinemaListPageContainer';
+import MovieListPageContainer from './Container/MovieListPageContainer'
+import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
+import HomePageContainer from './Container/HomePageContainer';
 import PaymentResultPageContainer from './Container/PaymentResultPageContainer';
 
 
 const routes = [
+  {
+    name: 'home',
+    path: '/',
+    description: 'Home',
+    component: HomePageContainer,
+    isShowOnDrawer: true
+  },
   {
     name: 'cinema',
     path: '/cinemas',
     description: 'Cinemas',
     component: CinemaListPageContainer,
     isShowOnDrawer: true
+  },
+  {
+    name: 'movie',
+    path: '/movies',
+    description: 'Movies',
+    component: MovieListPageContainer,
+    isShowOnDrawer: true
+  },
+
+  // Testing route
+  {
+    name: 'seatpicker',
+    path: '/seatpicker',
+    description: 'Seatpicker',
+    component: SeatPickerPageContainer,
   },
   {
     name: 'cinema',
@@ -36,3 +61,6 @@ const routes = [
 ];
 
 export default routes;
+
+
+

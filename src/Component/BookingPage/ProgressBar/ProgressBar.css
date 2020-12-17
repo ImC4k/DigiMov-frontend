@@ -1,0 +1,6 @@
+.booking-progress-bar {
+  position: fixed !important;
+  top: 56px;
+  width: 100%;
+  background-color: #eaeaea !important;
+}
