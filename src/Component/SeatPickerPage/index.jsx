@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import './SeatPickerPage.css';
 import '../Style/commonStyle.css';
-import clsx from 'clsx';
 import SeatPickerTable from './SeatPickerTable.jsx';
 
 export default class index extends Component {
