@@ -161,7 +161,7 @@ const PaymentRequestPage = () => {
                     <Grid container item xs={2} className={'payment-price'}>
                     ${movieSession.prices[priceType]}
                     </Grid>
-                    <Grid container item xs={4} className={'payment-price'}>
+                    <Grid container item xs={4} className={'payment-price'} justify='flex-end'>
                     <span>${calculateSubtotal(priceType)}</span>
                     </Grid>
                 </Grid>
@@ -174,7 +174,7 @@ const PaymentRequestPage = () => {
             <Grid container item xs={8}>
               <div className={'result-item-title'}>Total</div>
             </Grid>
-            <Grid container item xs={4}>
+            <Grid container item xs={4} justify='flex-end'>
               <div>
                 $
                 {Object.keys(customerGroupQuantityMap)
