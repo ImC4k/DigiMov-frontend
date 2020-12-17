@@ -1,4 +1,4 @@
-import { INIT_MOVIE_LIST } from './../actionTypes/movie.actionTypes';
+import { INIT_MOVIE_LIST } from '../actionTypes/movie.actionTypes';
 
 const movies = (state = [], action) => {
   if (action.type === INIT_MOVIE_LIST) {
