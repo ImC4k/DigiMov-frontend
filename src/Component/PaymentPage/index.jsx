@@ -169,14 +169,14 @@ class PaymentPage extends Component {
 
         const quantityPickerList = (Object.keys(prices).map(priceType => {
             return <>
-                <Grid container item xs={12} class={'payment-price-type'}>
+                <Grid container item xs={12} classname={'payment-price-type'}>
                     {priceType}
                 </Grid>
                 <Grid container item xs={12}>
-                    <Grid container item xs={4} class={'payment-price'}>
+                    <Grid container item xs={4} classname={'payment-price'}>
                         ${prices[priceType]}  
                     </Grid>
-                    <Grid container item xs={4} class={'payment-price'}>
+                    <Grid container item xs={4} classname={'payment-price'}>
                         <Select
                             id={priceType}
                             name={priceType}
@@ -187,7 +187,7 @@ class PaymentPage extends Component {
                         </Select>
                     </Grid>
                         
-                    <Grid container item xs={4} class={'payment-price'}>
+                    <Grid container item xs={4} classname={'payment-price'}>
                         <span>${calculateSubtotal(priceType)}</span>
                     </Grid>
                 </Grid>
@@ -198,7 +198,7 @@ class PaymentPage extends Component {
 
         const isCreditCardNumberError = checkCardType(creditCardInfo.number) === INVALID || checkCardType(creditCardInfo.number) === UNSUPPORTED_CARD;
         const isSeatPicked = totalQuantity === Object.keys(customerGroupQuantityMap).reduce((a, b) => (a + customerGroupQuantityMap[b]), 0);
-        const isEnablePayment = isSeatPicked && totalQuantity === this.props.confirmedSeats.length && creditCardInfo.holder.length > 0 && isEmailValid(requestOrder.email) && !isCreditCardNumberError && isCreditCardExpriyValid(creditCardInfo.expiryDate.month, creditCardInfo.expiryDate.year) && isCreditCardCvvValid(creditCardInfo.cvv);
+        const isEnablePayment = isSeatPicked && totalQuantity === this.props.confirmedSeats.length && creditCardInfo.holderName.length > 0 && isEmailValid(requestOrder.email) && !isCreditCardNumberError && isCreditCardExpriyValid(creditCardInfo.expiryDate.month, creditCardInfo.expiryDate.year) && isCreditCardCvvValid(creditCardInfo.cvv);
         return (
                 <Grid container item xs={12} className={'main-content'}>
                     <Grid container item xs={12}className={'section-header'}>
@@ -230,7 +230,7 @@ class PaymentPage extends Component {
                         </Grid>
                     </Grid>
                     <Grid container item xs={12}>
-                        <Card class={'payment-quantity-picker-card'}>
+                        <Card classname={'payment-quantity-picker-card'}>
                             <CardContent>
                                 {quantityPickerList}
                                 
