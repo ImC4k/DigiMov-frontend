@@ -4,6 +4,7 @@ import MovieListPageContainer from './Container/MovieListPageContainer'
 import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
 import HomePageContainer from './Container/HomePageContainer';
+import ResultPageContainer from './Container/ResultPageContainer';
 
 
 const routes = [
@@ -48,6 +49,13 @@ const routes = [
     path: '/booking',
     description: 'Booking',
     component: BookingPageConainer,
+    isShowOnDrawer: false
+  },
+  {
+    name: 'paymentresult',
+    path: '/orders/:id',
+    description: 'Payment Result',
+    component: ResultPageContainer,
     isShowOnDrawer: false
   }
 ];
