@@ -8,6 +8,7 @@ import HomePageContainer from './Container/HomePageContainer';
 import SearchOrderPageConainer from './Container/SearchOrderPageContainer/index';
 import ResultPageContainer from './Container/ResultPageContainer';
 import OrderCompletePage from './Component/OrderCompletePage';
+import OrderListPageConainer from './Container/OrderListPageContainer/index';
 
 
 const routes = [
@@ -82,7 +83,14 @@ const routes = [
     description: 'Payment Result',
     component: ResultPageContainer,
     isShowOnDrawer: false
-  }
+  },
+  {
+    name: 'orders',
+    path: '/orders',
+    description: 'Orders',
+    component: OrderListPageConainer,
+    isShowOnDrawer: false
+  },
 ];
 
 export default routes;
