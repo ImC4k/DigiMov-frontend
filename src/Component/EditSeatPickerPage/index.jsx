@@ -81,7 +81,6 @@ export default class index extends Component {
   }
 
   render() {
-    console.log(this.state.chosenSeat);
     // const {orderResponse} = this.props;
     const {orderResponse} = this.state;
     const session = orderResponse.movieSession;
@@ -128,7 +127,7 @@ export default class index extends Component {
           />
           
           <Grid item xs={12} align='center'>
-            <Button className={'seat-picker-proceed-button'} disabled={this.state.chosenSeat.length===0} onClick={this.onClickProceedButton}>Proceed</Button>
+            <Button className={'seat-picker-proceed-button'} disabled={this.state.chosenSeat.length!==orderResponse.bookedSeatIndices.length} onClick={this.onClickProceedButton}>Proceed</Button>
           </Grid>
         </Grid>
       </Grid>
