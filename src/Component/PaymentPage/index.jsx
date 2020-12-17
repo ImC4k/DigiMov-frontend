@@ -27,6 +27,8 @@ import {
   UNSUPPORTED_CARD,
 } from '../../Utils/creditCardUtils';
 
+import { proceedPayment } from '../../apis/booking'
+
 import '../Style/commonStyle.css';
 import './PaymentPage.css';
 
@@ -46,7 +48,6 @@ class PaymentPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //customerGroupQuantityMap : Object.keys(this.props.movieSession.prices).reduce((a, b) => {a[b] = 0; return a}, {}),
       totalQuantity: this.props.confirmedSeats.length,
       requestOrder: {
         movieSessionId: this.props.movieSession.id,
@@ -67,8 +68,7 @@ class PaymentPage extends Component {
           },
           cvv: '',
           holderName: '',
-        },
-        clientSessionId: this.props.sessionId,
+        }
       },
     };
   }
@@ -138,11 +138,12 @@ class PaymentPage extends Component {
 
   onClickMakePaymentButton = () => {
     //todo: add api, show payment complete modal and redirect to resultPage
-    console.log(this.state.requestOrder);
-    //DEBUGGING START
-    const TestingID = "123";
-    this.props.paymentComplete(TestingID);
-    //DEBUGGING END
+    const { clientSessionId, paymentComplete } = this.props;
+    const { requestOrder } = this.state;
+    requestOrder.creditCardInfo.expiryDate.year = '20'+requestOrder.creditCardInfo.expiryDate.year;
+    proceedPayment(clientSessionId, requestOrder).then((response) => {
+      paymentComplete(response.data.id);
+    })
   };
   render() {
     const { movieSession, confirmedSeats } = this.props;

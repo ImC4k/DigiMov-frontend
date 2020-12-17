@@ -21,9 +21,6 @@ function CineamSessionPicker() {
     let history = useHistory();
     useEffect(() => {
         if (cinema === undefined) {
-            console.log(
-                'Cinema' + cinemaId + ' not in redux, fetch from server'
-            );
             getCinema(cinemaId).then((response) => {
                 //Todo: Enhancement update fetched movie to redux
                 setCinema(response.data);
