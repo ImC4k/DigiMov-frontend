@@ -4,6 +4,7 @@ import MovieListPageContainer from './Container/MovieListPageContainer'
 import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
 import HomePageContainer from './Container/HomePageContainer';
+import EditSeatPickerPageContainer from './Container/EditSeatPickerPageContainer';
 
 
 const routes = [
@@ -27,6 +28,13 @@ const routes = [
     description: 'Movies',
     component: MovieListPageContainer,
     isShowOnDrawer: true
+  },
+  {
+    name: 'editseatpicker',
+    path: '/editseatpicker',
+    description: 'EditSeatPicker',
+    component: EditSeatPickerPageContainer,
+    isShowOnDrawer: false
   },
 
   // Testing route
