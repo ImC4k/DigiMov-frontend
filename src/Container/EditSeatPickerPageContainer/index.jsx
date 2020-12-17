@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import EditSeatPickerPage from '../../Component/EditSeatPickerPage';
 
 const mapStateToProps = (state) => ({
- orderId: state.orderId
+  editSeatPickerOrderId: state.editSeatPickerOrderId
 });
 
 const EditSeatPickerPageConainer = connect(
