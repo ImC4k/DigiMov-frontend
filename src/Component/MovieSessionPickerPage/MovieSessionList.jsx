@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Divider, Modal, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
+import { Grid, Divider, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
 import { useLocation, useHistory } from 'react-router-dom';
