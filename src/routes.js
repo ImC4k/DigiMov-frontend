@@ -5,6 +5,7 @@ import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
 import MovieSessionPickerPageContainer from './Container/MovieSessionPickerPageContainer/MovieSessionPickerPageContainer'
 import HomePageContainer from './Container/HomePageContainer';
+import EditSeatPickerPageContainer from './Container/EditSeatPickerPageContainer';
 import ResultPageContainer from './Container/ResultPageContainer';
 import OrderCompletePage from './Component/OrderCompletePage';
 
@@ -32,6 +33,12 @@ const routes = [
     isShowOnDrawer: true
   },
   {
+    name: 'editseatpicker',
+    path: '/editseatpicker',
+    description: 'EditSeatPicker',
+    component: EditSeatPickerPageContainer
+  },
+  { 
     name: 'movie',
     path: '/movies/:id',
     description: 'MoviesSessionPicker',
