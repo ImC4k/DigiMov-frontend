@@ -2,57 +2,13 @@ import './PaymentResultPage.css';
 import '../Style/commonStyle.css'
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, CircularProgress } from '@material-ui/core';
 import QRCode from 'qrcode.react';
 import moment from 'moment';
 
-//import { getOrderById } from '../../apis/order';
+import { getOrderById } from '../../apis/order';
 
-const hardCodeOrder = {
-  id: 123,
-  email: 'a@a.com',
-  userId: 123,
-  bookedSeatIndices: [1, 2],
-  customerGroupQuantityMap: {
-      Adult: 1,
-      Children: 1,
-  },
-  movieSession: {
-      id: '5fd760d56500c940f174f4b0',
-      movie: {
-          id: '5fd760d56500c940f174f4a0',
-          name: 'Beyond the dream',
-          duration: 100,
-          genres: [
-              {
-                  id: '5fd760d56500c940f174f4a0',
-                  name: 'Romance',
-              },
-          ],
-          director: 'Kiwi Chow',
-          description: 'I go to school by bus',
-          imageUrl:
-              'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
-          rating: 'IIA',
-          cast: ['ME', 'Them'],
-          language: 'Cantonese',
-      },
-      house: {
-          id: '5fd760d56500c940f174f4a01',
-          cinemaId: '5fd760d56500c940f174f4b2',
-          name: 'House 1',
-          capacity: 100,
-      },
-      startTime: 1608018165676,
-      prices: {
-          Adult: 100,
-          Children: 60,
-      },
-      occupied: {},
-      occupancyCount: 1,
-  },
-  creditCardNumber: '1234',
-};
+import { convertSeatIndexToSeatText } from '../../Utils/seatIndexUtils'
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -67,6 +23,7 @@ const PaymentRequestPage = () => {
     const orderId = useParams().id;
     const windowDimensions = getWindowDimensions();
 
+    const [isLoadingData, setIsLoadingData] = useState(true);
     const [order, setOrder] = useState({});
     const [isUpdateOrder, setIsUpdateOrder] = useState(true);
     const [isValidOrder, setIsInValidOrder] = useState(false);
@@ -78,16 +35,11 @@ const PaymentRequestPage = () => {
 
     useEffect(() => {
         console.log(orderId)
-        /*
         getOrderById(orderId).then((response) => {
             setOrder(response.data);
             setIsInValidOrder(true);
+            setIsLoadingData(false);
         });
-        */
-        //DEBUG START
-        setOrder(hardCodeOrder);
-        setIsInValidOrder(true);
-        //DEBUG END
         setIsUpdateOrder(false);
     }, [isUpdateOrder, orderId]);
 
@@ -96,6 +48,12 @@ const PaymentRequestPage = () => {
 
     const calculateSubtotal = (priceType) => {
         return movieSession.prices[priceType] * customerGroupQuantityMap[priceType]
+    }
+    
+    if(isLoadingData){
+        return(
+            <Grid container item xs={12} justify="center"><CircularProgress className={'loading-cirle'}/></Grid>
+        )
     }
 
     if(!isValidOrder){
@@ -108,6 +66,7 @@ const PaymentRequestPage = () => {
         </Grid>
       )
     }
+
 
     //can get data
     return (
@@ -152,7 +111,7 @@ const PaymentRequestPage = () => {
                         <div className={'sub-section-title'}>Seats</div>
                     </Grid>
                     <Grid container item xs={12}>
-                        {order.bookedSeatIndices.join(', ')}
+                        {order.bookedSeatIndices.map(convertSeatIndexToSeatText).join(', ')}
                     </Grid>
                     <Grid container item xs={12}>
                         <div className={'sub-section-title'}>Payment</div>

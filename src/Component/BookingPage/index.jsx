@@ -20,7 +20,7 @@ class BookingPage extends Component {
             shouldRedirectToPrevSession : false, 
             shouldRedirectToResultPage : false,
             bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment 3: complete
-            sessionId : uuid(),
+            clientSessionId : uuid(),
             confirmedSeats : [],
             movieSession: this.props.movieSession,
             successOrderId : ""
@@ -53,7 +53,7 @@ class BookingPage extends Component {
     }
     
     render(){
-        const { shouldRedirectToPrevSession, shouldRedirectToResultPage, bookingStage, movieSession, confirmedSeats, sessionId, successOrderId } = this.state;
+        const { shouldRedirectToPrevSession, shouldRedirectToResultPage, bookingStage, movieSession, confirmedSeats, clientSessionId, successOrderId } = this.state;
 
         const { previousPage } = this.props;
 
@@ -81,9 +81,9 @@ class BookingPage extends Component {
             </Grid>
             }
                 {bookingStage === SEAT_PICKER ?
-                    <SeatPickerPage movieSession={movieSession} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
+                    <SeatPickerPage movieSession={movieSession} clientSessionId={clientSessionId} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
                 :bookingStage === PAYMENT ?
-                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} sessionId={sessionId} paymentComplete={this.paymentComplete}/>
+                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} clientSessionId={clientSessionId} paymentComplete={this.paymentComplete}/>
                 :   <OrderCompletePage/>
                 }
             </Grid>
