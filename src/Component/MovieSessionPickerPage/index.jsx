@@ -19,6 +19,10 @@ function MovieSessionPicker() {
     const [open, setOpen] = useState(false);
     const [movieInfoInModal, setMovieInfoInModal] = useState({});
 
+    const RETRY_COUNT = 2;
+    const [getMovieRetryCounter, setGetMovieRetryCounter] = useState(RETRY_COUNT);
+    const [getMovieSessionRetryCounter, setGetMovieSessionRetryCounter] = useState(RETRY_COUNT);
+
     
     const handleOpen = (movieInfoInModal) => {
         setOpen(true);
@@ -31,22 +35,19 @@ function MovieSessionPicker() {
     let history = useHistory();
 
     useEffect(() => {
-        if(movie.id === undefined){
+        if(movie.id === undefined && getMovieRetryCounter > 0){
             setLoadingData(true);
             console.log("fetch movie: "+movieId+"from server");
             setLoadingData(true);
             getMovie(movieId).then((response) => {
                 setMovie(response.data);
             }).finally(() => {
-                setLoadingData(false)
+                setLoadingData(false);
+                setGetMovieRetryCounter(getMovieSessionRetryCounter - 1);
             });
         }
-    }
-    ,[movieId, movie])
-
-    
-    useEffect(() => {
-        if(movieSessions.length === 0){
+        
+        if(movieSessions.length === 0 && getMovieSessionRetryCounter > 0){
             console.log("fetch movie sessions from server");
             setLoadingData(true);
             getUpcomingMovieSessionListByMovieId(movieId).then((response) => {
@@ -54,10 +55,11 @@ function MovieSessionPicker() {
                 setMovieSession(response.data);
             }).finally(() => {
                 setLoadingData(false);
+                setGetMovieSessionRetryCounter(getMovieSessionRetryCounter - 1);
             });
         }
     }
-    ,   [movieId, movieSessions])
+    ,[movieId, movie, movieSessions]);
     
     return (
         <Grid container justify='center' alignItems='center'>
@@ -79,7 +81,12 @@ function MovieSessionPicker() {
                             More details
                         </Grid>
                         <Grid item xs={12}><Divider className='margin-divider'/></Grid>
+                        {!loadingData && (movieSessions.length === 0 ? 
+                        <div>No available sessions</div>: 
                         <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>
+                        )}
+                        
+                       
                         
                         <Modal open={open} onClose={handleClose}>
                             <div>
