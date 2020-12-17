@@ -82,12 +82,13 @@ function MovieSessionPicker() {
                         </Grid>
                         <Grid item xs={12}><Divider className='margin-divider'/></Grid>
                         {!loadingData && (movieSessions.length === 0 ? 
-                        <div>No available sessions</div>: 
+                        loadingData ? 
+                        (<Grid container item xs={12} justify="center"><CircularProgress className={'loading-cirle'}/></Grid>) : 
+                        (<div>No available sessions</div>): 
                         <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>
                         )}
-                        
-                       
-                        
+
+
                         <Modal open={open} onClose={handleClose}>
                             <div>
                             <MovieInfoModal movie={movieInfoInModal} />

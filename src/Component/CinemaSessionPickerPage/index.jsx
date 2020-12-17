@@ -27,9 +27,7 @@ function CineamSessionPicker() {
             getCinema(cinemaId).then((response) => {
                 //Todo: Enhancement update fetched movie to redux
                 setCinema(response.data);
-            }).finally(() => {
-                setLoadingData(false)
-            });
+            })
         }
        if(movieSessions.length === 0){
         
@@ -61,7 +59,9 @@ function CineamSessionPicker() {
                         <Grid item xs={12}><div className={'section-sub-header'}>{cinema.name}</div></Grid>
                         <Grid item xs={12}><Divider className='margin-divider'/></Grid>
                         {movieSessions.length === 0 ? 
-                        <div>No available sessions</div>:
+                         loadingData ? 
+                         (<Grid container item xs={12} justify="center"><CircularProgress className={'loading-cirle'}/></Grid>) : 
+                         (<div>No available sessions</div>):
                         <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>
                         }
                     </Grid>
