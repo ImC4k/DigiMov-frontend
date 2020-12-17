@@ -3,10 +3,9 @@ import { Button, Grid } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import '../SeatPickerPage/SeatPickerPage.css';
 import '../Style/commonStyle.css';
-import clsx from 'clsx';
 import EditSeatPickerTable from './EditSeatPickerTable.jsx';
 import { getOrderById, editSeatPosition } from '../../apis/order';
-
+import CircularLoading from '../Style/CircularLoading';
 
 export default class index extends Component {
   constructor(props) {
@@ -17,6 +16,7 @@ export default class index extends Component {
         chosenSeat: [],
         isValidOrder: false,
         shouldRedirect: false,
+        loadingData: true,
         orderId: '5fdb34c8056af70d7a4a0d75'
         }   
     }
@@ -27,7 +27,8 @@ export default class index extends Component {
           this.setState({
               orderResponse: response.data,
               chosenSeat: response.data.bookedSeatIndices,
-              isValidOrder: true
+              isValidOrder: true,
+              loadingData: false
           })
         });
       }
@@ -55,7 +56,8 @@ export default class index extends Component {
             this.setState({
                 orderResponse: response.data,
                 chosenSeat: response.data.bookedSeatIndices,
-                isValidOrder: true
+                isValidOrder: true,
+                loadingData: false
             })
           });
     } )
@@ -107,7 +109,7 @@ export default class index extends Component {
         <Grid
           item
           xs={12}
-          className={clsx('main-content', 'seat-picker-section')}
+          className={'seat-picker-section'}
         >
           <Grid item xs={12} className={'seat-picker-house-name'}>
             {session.house.name}
@@ -124,7 +126,8 @@ export default class index extends Component {
           </Grid>
         </Grid>
       </Grid>
-      : <span className={'main-content'}>Order not valid</span>
+      : this.state.loadingData?(<Grid container item xs={12} justify='center'><CircularLoading/></Grid>):
+      <span className={'main-content'}>Order not valid</span>
     );
   }
   }
