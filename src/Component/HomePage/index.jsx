@@ -40,7 +40,7 @@ export default class HomePage extends Component {
                             <div className={'section-title'}>New Movies</div>
                         </Grid>
                         <Grid className={'section-more'} container item xs={4} >
-                            <a href="https://www.w3schools.com">More</a>
+                            <a href="/movies">More</a>
                         </Grid>
                     </Grid>
                     <Grid container item justify='center' alignItems='center' xs={12} >
