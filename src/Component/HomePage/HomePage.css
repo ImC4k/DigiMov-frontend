@@ -1,0 +1,71 @@
+.paper-content {
+  margin-top: 80px !important;
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 180%;
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #000000;
+}
+
+.section-more {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.section-more a {
+  font-size: 100%;
+  margin-top: 10%;
+  text-decoration: none;
+  color: #0076ff;
+  text-align: right;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.search-box {
+  margin-top: 1%;
+  font-size: 130%;
+  font-weight: 500;
+  border: none;
+  color: #6b6b6b;
+}
+
+input.search-box:focus {
+  outline: none;
+}
+
+.search-box::placeholder {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #bfbfbf;
+}
+
+.indicator-text {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: #7c7c7c;
+}
+
+.card {
+  padding: 10px;
+}
+
+.scrolling-wrapper {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100vw;
+}
+
+.scrolling-wrapper .card {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.temp {
+    width: 100vw;
+    overflow-x: hidden;
+}
