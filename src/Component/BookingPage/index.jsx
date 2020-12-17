@@ -15,11 +15,9 @@ class BookingPage extends Component {
         super(props);
         this.state = {
             shouldRedirectToPrevSession : false, 
-            //bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment
-            bookingStage : PAYMENT, //to be removed: FOR DEVELOPMENT
+            bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment
             sessionId : uuid(),
-            //confirmedSeats : [],
-            confirmedSeats : [3,4],//to be removed: FOR DEVELOPMENT
+            confirmedSeats : [],
             movieSession: this.props.movieSession
         }
     }
@@ -54,7 +52,7 @@ class BookingPage extends Component {
         return (
             <Grid container justify='center' alignItems='center'>
                 {bookingStage === SEAT_PICKER ?
-                    <SeatPickerPage movieSession={movieSession}/>
+                    <SeatPickerPage movieSession={movieSession} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
                 :
                     <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} sessionId={sessionId}/>
                 }

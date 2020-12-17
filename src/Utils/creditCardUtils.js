@@ -1,4 +1,5 @@
 export const CARD_NUMBER_LIMIT = 16;
+export const HOLDER_NAME_LIMIT = 30;
 export const CURRENT_MONTH = 12;
 export const CURRENT_YEAR = 20;
 
@@ -12,7 +13,7 @@ export const UNIONPAY = 'UNIONPAY'
 //export const cardType = [INVALID, UNSUPPORTED_CARD, VISA, MASTER, UNIONPAY];
 
 export const isCreditCardExpriyValid = (month, year) =>{
-    return isCardExpriyDateMonthValid(month) && isCardExpriyDateYearValid(year) && (year>CURRENT_YEAR || (year==CURRENT_YEAR && month>=CURRENT_MONTH))
+    return isCardExpriyDateMonthValid(month) && isCardExpriyDateYearValid(year) && (year>CURRENT_YEAR || (year===CURRENT_YEAR && month>=CURRENT_MONTH))
 }
 export const isCardExpriyDateMonthValid = (month) => {
    return (month.match(/^(0[1-9]|1[0-2])/))
@@ -27,8 +28,7 @@ export const isCreditCardCvvValid = (cvv) => {
 } 
 
 export const isEmailValid = (email) => {
-    console.log(email)
-    return (email.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/))
+    return (email.match(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/))
 }
 
 export const checkCardType = (cardNumber) => {

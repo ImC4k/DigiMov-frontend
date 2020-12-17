@@ -6,7 +6,7 @@ export const convertSeatIndexToRow = (seatIndex) =>{
 }
 
 export const convertSeatIndexToColumn = (seatIndex) =>{
-    return seatIndex % columnInRow
+    return seatIndex % columnInRow + 1
 }
 
 export const convertSeatIndexToSeatText = (seatIndex) => {

@@ -4,12 +4,13 @@ import 'moment';
 import _ from 'lodash';
 import { Grid, Select, MenuItem, Divider, TextField, Button, Card, CardContent } from '@material-ui/core';
 import {convertSeatIndexToSeatText} from '../../Utils/seatIndexUtils';
-import { checkCardType, isCardExpriyDateMonthValid, isCardExpriyDateYearValid, isCreditCardCvvValid, isEmailValid, isCreditCardExpriyValid, CARD_NUMBER_LIMIT, INVALID, UNSUPPORTED_CARD } from '../../Utils/creditCardUtils'
+import { checkCardType, isCardExpriyDateMonthValid, isCardExpriyDateYearValid, isCreditCardCvvValid, isEmailValid, isCreditCardExpriyValid, CARD_NUMBER_LIMIT, HOLDER_NAME_LIMIT, INVALID, UNSUPPORTED_CARD } from '../../Utils/creditCardUtils'
 
 import '../Style/commonStyle.css'
 import './PaymentPage.css'
 
 const CARD_NUMBER_ID = 'card-number';
+const CARD_HOLDER_NAME_ID = 'card-holder-name'
 const EMAIL_ID = 'email';
 const EXPIRY_DATE_MONTH_ID = 'card-expiry-date-month';
 const EXPIRY_DATE_YEAR_ID = 'card-expiry-date-year';
@@ -27,7 +28,7 @@ class PaymentPage extends Component {
             //customerGroupQuantityMap : Object.keys(this.props.movieSession.prices).reduce((a, b) => {a[b] = 0; return a}, {}),
             totalQuantity : this.props.confirmedSeats.length,
             requestOrder : {
-                movieSessionId: this.props.movieSession,
+                movieSessionId: this.props.movieSession.id,
                 bookedSeatIndices: this.props.confirmedSeats,
                 customerGroupQuantityMap: Object.keys(this.props.movieSession.prices).reduce((a, b) => {a[b] = 0; return a}, {}),
                 email: "",
@@ -56,19 +57,22 @@ class PaymentPage extends Component {
 
         if(newQuantityTotal > totalQuantity){
             [...Array(newQuantityTotal-totalQuantity).keys()].forEach(() =>{
+                var isRemoved = false;
                 _.forEach(customerGroupQuantityMap, (value, key) => {
-                    if(key !== event.target.name && value > 0){
+                    if(key !== event.target.name && value > 0 && !isRemoved){
                         customerGroupQuantityMap[key] = value - 1;
+                        isRemoved = true;
                     }
                 })
             })
         }
         else if(newQuantityTotal < totalQuantity){
             [...Array(totalQuantity - newQuantityTotal).keys()].forEach(() =>{
-                console.log(totalQuantity - newQuantityTotal)
+                var isAdded = false;
                 _.forEach(customerGroupQuantityMap, (value, key) => {
-                    if(key !== event.target.name){
+                    if(key !== event.target.name && !isAdded){
                         customerGroupQuantityMap[key] = value + 1;
+                        isAdded = true;
                     }
                 })
             })
@@ -80,7 +84,6 @@ class PaymentPage extends Component {
     }
 
     handleOrderChange = (event) => {
-        console.log(event.target.id);
         var { requestOrder } = this.state;
         var { creditCardInfo } = requestOrder;
         
@@ -92,6 +95,11 @@ class PaymentPage extends Component {
         else if(event.target.id === EMAIL_ID){
             if(event.target.value.length <= EMAIL_LIMIT){
                 requestOrder.email = event.target.value;
+            }
+        }
+        else if(event.target.id === CARD_HOLDER_NAME_ID){
+            if(event.target.value.length <= HOLDER_NAME_LIMIT){
+                creditCardInfo.holderName  = event.target.value;
             }
         }
         else if(event.target.id === EXPIRY_DATE_MONTH_ID){
@@ -114,17 +122,25 @@ class PaymentPage extends Component {
         this.setState({requestOrder});
     }
 
-    makePayment = () => {
+    onClickMakePaymentButton = () => {
+        //todo: add api, show payment complete modal and redirect to resultPage
         console.log(this.state.requestOrder)
     }
     render(){
         const { movieSession, confirmedSeats } = this.props;
-        const { startTimeInMoment, movie, house, prices } = movieSession;
+        const { movie, house, prices } = movieSession;
 
         const { requestOrder, totalQuantity } = this.state;
         const { customerGroupQuantityMap, creditCardInfo } = requestOrder;
         
-        console.log(movieSession);
+        const startDate = new Date(movieSession.startTime).toLocaleDateString(
+            'zh-Hans-CN'
+        );
+        const startTime = new Date(movieSession.startTime).toLocaleTimeString('en-US', {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+        });
         const pickedSeat = confirmedSeats.map(seatIndex => {
             return <span>{convertSeatIndexToSeatText(seatIndex)}</span>
         })
@@ -182,7 +198,7 @@ class PaymentPage extends Component {
 
         const isCreditCardNumberError = checkCardType(creditCardInfo.number) === INVALID || checkCardType(creditCardInfo.number) === UNSUPPORTED_CARD;
         const isSeatPicked = totalQuantity === Object.keys(customerGroupQuantityMap).reduce((a, b) => (a + customerGroupQuantityMap[b]), 0);
-        const isEnablePayment = isSeatPicked && totalQuantity === this.props.confirmedSeats.length && isEmailValid(requestOrder.email) && !isCreditCardNumberError && isCreditCardExpriyValid(creditCardInfo.expiryDate.month, creditCardInfo.expiryDate.year) && isCreditCardCvvValid(creditCardInfo.cvv);
+        const isEnablePayment = isSeatPicked && totalQuantity === this.props.confirmedSeats.length && creditCardInfo.holder.length > 0 && isEmailValid(requestOrder.email) && !isCreditCardNumberError && isCreditCardExpriyValid(creditCardInfo.expiryDate.month, creditCardInfo.expiryDate.year) && isCreditCardCvvValid(creditCardInfo.cvv);
         return (
                 <Grid container item xs={12} className={'main-content'}>
                     <Grid container item xs={12}className={'section-header'}>
@@ -194,11 +210,11 @@ class PaymentPage extends Component {
                     
                     <Grid container item xs={12}>
                         <Grid container item xs={4} className={'payment-session-time'}>
-                            {startTimeInMoment.format('YYYY-MM-DD')}
+                            {startDate}
                             
                         </Grid>
                         <Grid container item xs={2} className={'payment-session-time'}>
-                            {startTimeInMoment.format('HH:mm')}
+                            {startTime}
                         </Grid>
                         <Grid container item xs={3} className={'payment-session-house'}>
                             {house.name}
@@ -237,6 +253,15 @@ class PaymentPage extends Component {
                     </Grid>
                     cardType{checkCardType(creditCardInfo.number)}
                     <Grid container item xs={12}>
+                        <Grid container item xs={12}>
+                            <TextField 
+                                id={CARD_HOLDER_NAME_ID}
+                                label="Card Holder"
+                                value={creditCardInfo.holderName}
+                                onChange={this.handleOrderChange}
+                                required
+                            ></TextField>
+                        </Grid>
                         <Grid container item xs={12}>
                             <TextField 
                                 id={CARD_NUMBER_ID}
@@ -286,7 +311,7 @@ class PaymentPage extends Component {
                     </Grid>
                     <Divider variant="middle"/>
                     <Grid item xs={12} align='center' className={'payment-proceed-button-section'}>
-                        <Button color="primary" disabled={!isEnablePayment}>Make payment</Button>
+                        <Button color="primary" disabled={!isEnablePayment} onClick={this.onClickMakePaymentButton}>Make payment</Button>
                     </Grid>
                 </Grid>
         )
