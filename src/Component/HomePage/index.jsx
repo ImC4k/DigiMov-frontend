@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getAllMovies } from './../../apis/movie';
 import './HomePage.css'
 import { Grid } from '@material-ui/core';
-import MovieCard from './../MovieCard/index';
+import MovieCard from '../HomeMovieCard/index';
 import { getAllCinemas } from './../../apis/cinema';
 import CinemaCard from '../CinemaCard';
 
@@ -33,14 +33,14 @@ export default class HomePage extends Component {
             ) : (<p className={'indicator-text'}>No available cinema</p>);
 
         return (
-            <Grid container justify='center' alignItems='center' className={'temp'}>
+            <Grid container justify='center' alignItems='center' className={'information'}>
                 <Grid container item xs={10} className={'paper-content'}>
                     <Grid container item xs={12} >
                         <Grid container item xs={8} >
                             <div className={'section-title'}>New Movies</div>
                         </Grid>
                         <Grid className={'section-more'} container item xs={4} >
-                            <a href="https://www.w3schools.com">More</a>
+                            <a href="/movies">More</a>
                         </Grid>
                     </Grid>
                     <Grid container item justify='center' alignItems='center' xs={12} >

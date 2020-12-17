@@ -24,23 +24,6 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.search-box {
-  margin-top: 1%;
-  font-size: 130%;
-  font-weight: 500;
-  border: none;
-  color: #6b6b6b;
-}
-
-input.search-box:focus {
-  outline: none;
-}
-
-.search-box::placeholder {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #bfbfbf;
-}
-
 .indicator-text {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -64,7 +47,7 @@ input.search-box:focus {
   flex: 0 0 auto;
 }
 
-.temp {
+.information {
     width: 100vw;
     overflow-x: hidden;
 }
