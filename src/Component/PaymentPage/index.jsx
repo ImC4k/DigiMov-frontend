@@ -169,14 +169,14 @@ class PaymentPage extends Component {
 
         const quantityPickerList = (Object.keys(prices).map(priceType => {
             return <>
-                <Grid container item xs={12} classname={'payment-price-type'}>
+                <Grid container item xs={12} className={'payment-price-type'}>
                     {priceType}
                 </Grid>
                 <Grid container item xs={12}>
-                    <Grid container item xs={4} classname={'payment-price'}>
+                    <Grid container item xs={4} className={'payment-price'}>
                         ${prices[priceType]}  
                     </Grid>
-                    <Grid container item xs={4} classname={'payment-price'}>
+                    <Grid container item xs={4} className={'payment-price'}>
                         <Select
                             id={priceType}
                             name={priceType}
@@ -187,7 +187,7 @@ class PaymentPage extends Component {
                         </Select>
                     </Grid>
                         
-                    <Grid container item xs={4} classname={'payment-price'}>
+                    <Grid container item xs={4} className={'payment-price'}>
                         <span>${calculateSubtotal(priceType)}</span>
                     </Grid>
                 </Grid>
@@ -230,7 +230,7 @@ class PaymentPage extends Component {
                         </Grid>
                     </Grid>
                     <Grid container item xs={12}>
-                        <Card classname={'payment-quantity-picker-card'}>
+                        <Card className={'payment-quantity-picker-card'}>
                             <CardContent>
                                 {quantityPickerList}
                                 
