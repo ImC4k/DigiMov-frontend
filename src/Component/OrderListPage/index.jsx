@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../Style/commonStyle.css';
 import { Grid } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import OrderCard from '../OrderCard';
 
 class index extends Component {
