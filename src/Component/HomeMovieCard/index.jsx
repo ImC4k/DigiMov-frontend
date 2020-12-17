@@ -6,7 +6,7 @@ import { ERROR_IMAGE } from '../../assets';
 import './MovieCard.css';
 import { Grid } from "@material-ui/core";
 
-export default class MovieCard extends Component {
+export default class HomeMovieCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
