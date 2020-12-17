@@ -9,7 +9,7 @@ import CircularLoading from '../Style/CircularLoading'
 
 import MovieInfoModal from '../MovieInfoModal';
 
-function MovieListPage(props) {
+function MovieListPage({initMovieList, movieList}) {
     const [open, setOpen] = React.useState(false);
     const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
     const [keyword, setKeyword] = useState("");
@@ -26,16 +26,16 @@ function MovieListPage(props) {
 
     useEffect(() => {
         getAllMovies().then((response) => {
-            props.initMovieList(response.data);
+            initMovieList(response.data);
             setLoadingData(false);
           });
-      });
+      },[initMovieList]);
 
     const changeKeyWord = (event) => {
         setKeyword(event.target.value);
       }
 
-    var filteredMovieList = props.movieList;
+    var filteredMovieList = movieList;
     if (keyword !== "") {
     filteredMovieList = filteredMovieList.filter(movie => 
         movie.name.toLowerCase().includes(keyword.toLowerCase())
