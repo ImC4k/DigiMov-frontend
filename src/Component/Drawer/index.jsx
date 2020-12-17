@@ -21,10 +21,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  drawer: {
-  },
-  appBar: {
-  },
   menuButton: {
     marginRight: theme.spacing(2)
   },
@@ -41,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
   content: {
     flexGrow: 1,
-    padding: theme.spacing(1),
   },
 
   drawerHeader: {
@@ -70,7 +65,7 @@ export default function PersistentDrawerLeft(props) {
       <CssBaseline />
       <AppBar
         position='fixed'
-        className={clsx(classes.appBar, 'app-bar-background')}
+        className={'app-bar-background'}
       >
         <Toolbar>
           <Typography className={'app-bar-app-name'} variant='h6' noWrap>
@@ -89,7 +84,7 @@ export default function PersistentDrawerLeft(props) {
         </Toolbar>
       </AppBar>
 
-      <nav className={classes.drawer}>
+      <nav>
         <Drawer
           container={container}
           variant='temporary'
