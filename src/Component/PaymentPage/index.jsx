@@ -147,7 +147,7 @@ class PaymentPage extends Component {
 
         const renderQuantityList = (size) => {
             return [...Array(size).keys()].map(quantity => {
-                return <MenuItem value={quantity}>{quantity}</MenuItem>
+                return <MenuItem key={"menu-item-"+quantity} value={quantity}>{quantity}</MenuItem>
             })
         }
 
