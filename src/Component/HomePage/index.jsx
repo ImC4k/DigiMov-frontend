@@ -4,7 +4,6 @@ import './HomePage.css'
 import { Grid } from '@material-ui/core';
 import MovieCard from '../HomeMovieCard/index';
 import { getAllCinemas } from './../../apis/cinema';
-import CinemaCard from './../CinemaCard';
 import HomeCinemaCard from './../HomeCinemaCard/index';
 export default class HomePage extends Component {
     componentDidMount() {
