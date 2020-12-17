@@ -39,7 +39,7 @@ class HomeCinemaCard extends Component {
                         >
                             <CardActionArea>
                                 <CardMedia
-                                    className={'card-image'}
+                                    className={'home-cinema-card-image'}
                                     src={this.state.imageUrl}
                                     component='img'
                                     onError={(e) => {
