@@ -1,4 +1,4 @@
-import { INIT_ORDER_RESPONSE, SET_ORDER_RESPONSE } from '../actionTypes/editseatpicker.actionTypes';
+import { INIT_ORDER_RESPONSE, SET_ORDER_ID } from '../actionTypes/editseatpicker.actionTypes';
 export const initOrderResponse = (orderRespnose) => {
   return {
     type: INIT_ORDER_RESPONSE,
@@ -6,9 +6,9 @@ export const initOrderResponse = (orderRespnose) => {
   };
 };
 
-export const setOrderResponse = (orderRespnose) => {
+export const setOrderId = (orderId) => {
     return {
-      type: SET_ORDER_RESPONSE,
-      payload: orderRespnose,
+      type: SET_ORDER_ID,
+      payload: orderId,
     };
   };

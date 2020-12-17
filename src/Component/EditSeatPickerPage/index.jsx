@@ -4,6 +4,9 @@ import '../SeatPickerPage/SeatPickerPage.css';
 import '../Style/commonStyle.css';
 import clsx from 'clsx';
 import EditSeatPickerTable from './EditSeatPickerTable.jsx';
+import { getOrderById } from '../../apis/order';
+
+const orderId = '5fd817c808d4a5464c26de89';
 
 const orderResponse = {
     id: '5fd817c808d4a5464c26de89',
@@ -53,10 +56,21 @@ export default class index extends Component {
     super(props);
 
     this.state = {
-        orderResponse: orderResponse,
-        chosenSeat: orderResponse.bookedSeatIndices
+        orderResponse: {},
+        chosenSeat: [],
+        isValidOrder: false
         }   
     }
+
+    componentDidMount() {
+        getOrderById(this.props.orderId).then((response) => {
+          this.setState({
+              orderResponse: response.data,
+              chosenSeat: response.data.bookedSeatIndices,
+              isValidOrder: true
+          })
+        });
+      }
 
   updateChoseSeat = (seatNumber) => {
     let newChosenSeats = this.state.chosenSeat;
@@ -81,19 +95,25 @@ export default class index extends Component {
   }
 
   render() {
-    // const {orderResponse} = this.props;
-    const {orderResponse} = this.state;
-    const session = orderResponse.movieSession;
-    const startDate = new Date(session.startTime).toLocaleDateString(
-      'zh-Hans-CN'
-    );
-    const startTime = new Date(session.startTime).toLocaleTimeString('en-US', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+    const { orderResponse } = this.state;
+    let session = orderResponse.movieSession;
+    let startDate = '';
+    let startTime = '';
+    if(this.state.isValidOrder){
+        session = orderResponse.movieSession;
+        startDate = new Date(session.startTime).toLocaleDateString(
+        'zh-Hans-CN'
+        );
+        startTime = new Date(session.startTime).toLocaleTimeString('en-US', {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        });
+    }
+    
 
     return (
+        this.state.isValidOrder?
       <Grid container>
         <Grid item xs={1}></Grid>
         <Grid container item xs={10} className={'main-content'}>
@@ -131,6 +151,7 @@ export default class index extends Component {
           </Grid>
         </Grid>
       </Grid>
+      : <span className={'main-content'}>Order not valid</span>
     );
   }
 }

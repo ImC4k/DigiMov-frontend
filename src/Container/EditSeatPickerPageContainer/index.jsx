@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
-import { initOrderResponse, setOrderResponse } from '../../actions/editseatpicker.actions.js'
+import { setOrderId } from '../../actions/editseatpicker.actions.js'
 import EditSeatPickerPage from '../../Component/EditSeatPickerPage';
 
 const mapDispatchToProps = (dispatch) => ({
-  initOrderResponse: (orderResponse) => dispatch(initOrderResponse(orderResponse)),
-  setOrderResponse: (orderResponse) => dispatch(setOrderResponse(orderResponse)),
+  setOrderId: (orderId) => dispatch(setOrderId(orderId))
 });
 
 const mapStateToProps = (state) => ({
- orderResponse: state.orderResponse,
+ orderId: state.orderId,
 });
 
 const EditSeatPickerPageConainer = connect(
