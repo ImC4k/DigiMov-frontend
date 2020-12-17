@@ -101,7 +101,7 @@ export default class index extends Component {
         <Grid
           item
           xs={12}
-          className={clsx('main-content', 'seat-picker-section')}
+          className={'seat-picker-section'}
         >
           <Grid item xs={12} className={'seat-picker-house-name'}>
             {session.house.name}

@@ -10,92 +10,62 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import routes from '../../routes.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import './Drawer.css';
 
-const drawerWidth = 150;
+const drawerWidth = 160;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
+
+  toolbar: theme.mixins.toolbar,
+
   drawerPaper: {
     width: drawerWidth,
     background: '#f5f5f5 0% 0% no-repeat padding-box',
+    opacity: 0.9,
     boxShadow: '3px 0px 10px #00000029',
     border: 0,
   },
+
+  content: {
+    flexGrow: 1,
+  },
+
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
-  content: {
-    flexGrow: 1,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
+  const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position='fixed'
-        className={clsx('app-bar-background', classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+        className={'app-bar-background'}
       >
         <Toolbar>
           <Typography className={'app-bar-app-name'} variant='h6' noWrap>
@@ -103,58 +73,54 @@ export default function PersistentDrawerLeft() {
           </Typography>
 
           <IconButton
+            color='inherit'
             aria-label='open drawer'
-            onClick={handleDrawerOpen}
             edge='start'
-            className={clsx(
-              'app-bar-button',
-              classes.menuButton,
-              open && classes.hide
-            )}
+            onClick={handleDrawerToggle}
+            className={clsx(classes.menuButton, 'app-bar-button')}
           >
             <MenuIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant='persistent'
-        anchor='left'
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
+
+      <nav>
+        <Drawer
+          container={container}
+          variant='temporary'
+          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerToggle}>
               <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <List>
-          {routes
-            .filter(route => route.isShowOnDrawer)
-            .map((route, index) => (
-              <ListItem button key={route.name}>
+            </IconButton>
+          </div>
+          <List>
+            {routes
+              .filter((route) => route.isShowOnDrawer)
+              .map((route) => (
                 <Link
                   className={'router-link'}
                   to={route.path}
-                  onClick={handleDrawerClose}
+                  onClick={handleDrawerToggle}
+                  key={route.name}
                 >
-                  {route.description}
+                  <ListItem button>{route.description}</ListItem>
                 </Link>
-              </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
+              ))}
+          </List>
+        </Drawer>
+      </nav>
+
+      <main className={classes.content}>
         <Switch>
           {routes.map((route) => (
             <Route

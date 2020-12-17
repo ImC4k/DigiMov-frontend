@@ -42,8 +42,8 @@ export default class HomeMovieCard extends Component {
                         </CardActionArea>
                     </Card>
                 </Grid>
-                <Grid className={'name'} container item xs={12}>
-                    <p>{name}</p>
+                <Grid className={'home-movie-card-movie-name'} container item xs={12} justify='center'>
+                    {name}
                 </Grid>
             </Grid>
         )
