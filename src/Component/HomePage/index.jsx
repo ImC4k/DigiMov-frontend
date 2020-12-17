@@ -4,8 +4,8 @@ import './HomePage.css'
 import { Grid } from '@material-ui/core';
 import MovieCard from '../HomeMovieCard/index';
 import { getAllCinemas } from './../../apis/cinema';
-import CinemaCard from '../CinemaCard';
-
+import CinemaCard from './../CinemaCard';
+import HomeCinemaCard from './../HomeCinemaCard/index';
 export default class HomePage extends Component {
     componentDidMount() {
         getAllMovies().then((response) => {
@@ -26,8 +26,8 @@ export default class HomePage extends Component {
         const cinemas =
             this.props.cinemaList.length > 0 ? (
                 this.props.cinemaList.slice(0, 4).map((cinema) => (
-                    <Grid key={cinema.id} className={'card'} container item xs={9}>
-                        <CinemaCard cinema={cinema} />
+                    <Grid key={cinema.id} className={'home-cinema-card'} container item xs={12}>
+                        <HomeCinemaCard cinema={cinema}/>
                     </Grid>
                 ))
             ) : (<p className={'indicator-text'}>No available cinema</p>);
