@@ -62,6 +62,13 @@ export default class index extends Component {
     this.setState({ chosenSeat: newChosenSeats });
   };
 
+  onClickProceedButton = () => {
+    const {proceedSuccess} = this.props;
+    const {chosenSeat, movieSessionResponse} = this.state;
+    //to be updated: call api to proceed
+    proceedSuccess(chosenSeat, movieSessionResponse)
+  }
+
   render() {
     const session = this.props.movieSession;
     const startDate = new Date(session.startTime).toLocaleDateString(
@@ -106,7 +113,7 @@ export default class index extends Component {
           />
           
           <Grid item xs={12} align='center'>
-            <Button className={'seat-picker-proceed-button'}>Proceed</Button>
+            <Button className={'seat-picker-proceed-button'} disabled={this.state.chosenSeat.length===0} onClick={this.onClickProceedButton}>Proceed</Button>
           </Grid>
         </Grid>
       </Grid>
