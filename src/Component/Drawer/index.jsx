@@ -113,7 +113,7 @@ export default function PersistentDrawerLeft(props) {
                   onClick={handleDrawerToggle}
                   key={route.name}
                 >
-                  <ListItem button>{route.description}</ListItem>
+                  <ListItem style={{margin: '10% 0'}} button>{route.description}</ListItem>
                 </Link>
               ))}
           </List>
