@@ -57,24 +57,24 @@ class SearchOrderPage extends Component {
                     <Grid container item xs={12} className={'section-header'}>
                         Manage Orders
                 </Grid>
-
-                    <Grid container item xs={12}>
-                        <Grid container item xs={12}>
+                    <Grid container justify={'center'} item xs={12}>
+                        <Grid container item xs={8}>
                             <TextField
                                 id={CARD_NUMBER_ID}
                                 label="Card Number"
                                 value={params.cardNumber}
                                 onChange={this.handleInputChange}
+                                fullWidth={true}
                                 required
                             ></TextField>
                         </Grid>
-                        <Grid container item xs={12}>
+                        <Grid container item xs={8}>
                             <TextField
                                 id={EMAIL_ID}
                                 label="Email Address"
                                 value={params.email}
                                 onChange={this.handleInputChange}
-                                // error={creditCardInfo.number.length > 0 && isCreditCardNumberError}
+                                fullWidth={true}
                                 required
                             ></TextField>
                         </Grid>
