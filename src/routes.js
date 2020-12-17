@@ -4,7 +4,7 @@ import MovieListPageContainer from './Container/MovieListPageContainer'
 import SeatPickerPageContainer from './Container/SeatPickerPageContainer';
 import CinemaSessionPickerPageContainer from './Container/CinemaSessionPickerPageContainer/CinemaSessionPickerPageContainer';
 import HomePageContainer from './Container/HomePageContainer';
-import PaymentResultPageContainer from './Container/PaymentResultPageContainer';
+import ResultPageContainer from './Container/ResultPageContainer';
 
 
 const routes = [
@@ -55,7 +55,7 @@ const routes = [
     name: 'paymentresult',
     path: '/orders/:id',
     description: 'Payment Result',
-    component: PaymentResultPageContainer,
+    component: ResultPageContainer,
     isShowOnDrawer: false
   }
 ];

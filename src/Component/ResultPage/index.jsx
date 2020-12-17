@@ -1,12 +1,12 @@
 import './PaymentResultPage.css';
+import '../Style/commonStyle.css'
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Grid, Button } from '@material-ui/core';
 import QRCode from 'qrcode.react';
 import moment from 'moment';
 
-
-import { getOrderById } from '../../apis/order';
+//import { getOrderById } from '../../apis/order';
 
 const hardCodeOrder = {
   id: 123,
@@ -46,7 +46,7 @@ const hardCodeOrder = {
       startTime: 1608018165676,
       prices: {
           Adult: 100,
-          Student: 60,
+          Children: 60,
       },
       occupied: {},
       occupancyCount: 1,
@@ -76,7 +76,6 @@ const PaymentRequestPage = () => {
       history.push('/editseatpicker');
     }
 
-
     useEffect(() => {
         console.log(orderId)
         /*
@@ -91,6 +90,13 @@ const PaymentRequestPage = () => {
         //DEBUG END
         setIsUpdateOrder(false);
     }, [isUpdateOrder, orderId]);
+
+    const { movieSession, customerGroupQuantityMap } = order;
+    
+
+    const calculateSubtotal = (priceType) => {
+        return movieSession.prices[priceType] * customerGroupQuantityMap[priceType]
+    }
 
     if(!isValidOrder){
       //network error/ not found
@@ -126,13 +132,13 @@ const PaymentRequestPage = () => {
                         <div className={'sub-section-title'}>Movie</div>
                     </Grid>
                     <Grid container item xs={12}>
-                        {order.movieSession.movie.name}
+                        {movieSession.movie.name}
                     </Grid>
                     <Grid container item xs={12}>
                         <div className={'sub-section-title'}>Session</div>
                     </Grid>
                     <Grid container item xs={12}>
-                        {moment(order.movieSession.startTime)
+                        {moment(movieSession.startTime)
                             .format('YYYY/MM/DD HH:mm')
                             .toString()}
                     </Grid>
@@ -140,7 +146,7 @@ const PaymentRequestPage = () => {
                         <div className={'sub-section-title'}>House</div>
                     </Grid>
                     <Grid container item xs={12}>
-                        {order.movieSession.house.name}
+                        {movieSession.house.name}
                     </Grid>
                     <Grid container item xs={12}>
                         <div className={'sub-section-title'}>Seats</div>
@@ -148,6 +154,43 @@ const PaymentRequestPage = () => {
                     <Grid container item xs={12}>
                         {order.bookedSeatIndices.join(', ')}
                     </Grid>
+                    <Grid container item xs={12}>
+                        <div className={'sub-section-title'}>Payment</div>
+                    </Grid> 
+                    {Object.keys(movieSession.prices).map(priceType => {
+                        return <Grid container item xs={12} key={priceType}>
+                                <Grid container item xs={4} className={'payment-price'}>
+                                    {priceType}
+                                </Grid>
+                                <Grid container item xs={2} className={'payment-price'}>
+                                    {customerGroupQuantityMap[priceType]}x 
+                                </Grid>
+                                <Grid container item xs={2} className={'payment-price'}>
+                                    ${movieSession.prices[priceType]}  
+                                </Grid>
+                                <Grid container item xs={4} className={'payment-price'}>
+                                    <span>${calculateSubtotal(priceType)}</span>
+                                </Grid>
+                            </Grid>
+                        
+                    })}
+                    <Grid container item xs={12}>
+                        <Grid container item xs={8}>
+                            <div className={'sub-section-title'}>Total</div>
+                        </Grid> 
+                        <Grid container item xs={4}>
+                            <div>
+                            ${Object.keys(customerGroupQuantityMap)
+                                .map(ticketType => 
+                                    (calculateSubtotal(ticketType))
+                                )
+                                .reduce((total, subTotal) =>
+                                    (total + subTotal),
+                                    0
+                                )}
+                            </div>
+                        </Grid>
+                    </Grid> 
                     <Grid container item xs={12}>
                         <div className={'sub-section-title'}>Digi-ticket</div>
                     </Grid>
