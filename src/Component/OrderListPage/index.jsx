@@ -16,7 +16,7 @@ class index extends Component {
                 (orderList.map((order) => { return <OrderCard key={order.id} order={order} /> })) : (<p className={'indicator-text'}>No Matched Order.</p>);
 
         return (
-            <Grid container justify='center' alignItems='center'>
+            <Grid container justify='center'>
                 <Grid container item xs={10} className={'main-content'}>
                     <Grid container item xs={12} >
                         <div className={'section-title'}>Order History</div>
