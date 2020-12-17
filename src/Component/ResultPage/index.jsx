@@ -160,8 +160,6 @@ const PaymentRequestPage = () => {
                       />
                     </Grid>
                 </Grid>
-                );
-            })}
             </Grid>
 
 
@@ -188,8 +186,6 @@ const PaymentRequestPage = () => {
               className='qrcode'
             />
           </Grid>
-        </Grid>
-      </Grid>
     </div>
   );
 };
