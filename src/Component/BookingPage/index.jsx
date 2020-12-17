@@ -54,7 +54,7 @@ class BookingPage extends Component {
             <Grid container justify='center' alignItems='center'>                
             <ProgressBar value={(bookingStage === SEAT_PICKER ? 30 : 60)}/>
             <Grid container item xs={10} className={'custom-breadcrumbs'} onClick={this.backToPrevSession}>
-                Sessions /
+                Back to sessions
             </Grid>
                 {bookingStage === SEAT_PICKER ?
                     <SeatPickerPage movieSession={movieSession} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
