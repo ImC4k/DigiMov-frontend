@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { getOrder } from './../../apis/order';
 import { Redirect } from 'react-router-dom';
 import './SearchOrderPage.css';
+import {checkCardType, isEmailValid, INVALID} from '../../Utils/creditCardUtils'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const CARD_NUMBER_ID = 'card-number';
 const EMAIL_ID = 'email';
@@ -20,6 +22,8 @@ class SearchOrderPage extends Component {
         email: '',
       },
       shouldRedirect: false,
+      fetchOrdersFailed: false,
+      fetchingOrders: false,
     };
   }
 
@@ -39,11 +43,15 @@ class SearchOrderPage extends Component {
   };
 
   submit = () => {
+    this.setState({fetchingOrders: true});
     getOrder(this.state.params.email, this.state.params.cardNumber).then(
       (response) => {
+        this.setState({fetchingOrders: false});
         this.props.getOrderListByCardAndEmail(response.data);
         if (response.data.length > 0) {
-          this.setState({ shouldRedirect: true });
+          this.setState({ shouldRedirect: true, fetchOrdersFailed: false });
+        } else {
+          this.setState({ fetchOrdersFailed: true })
         }
       }
     );
@@ -51,6 +59,10 @@ class SearchOrderPage extends Component {
 
   render() {
     var { params, shouldRedirect } = this.state;
+    const validCardAndEmail = 
+      isEmailValid(params.email) && 
+      checkCardType(params.cardNumber) !== INVALID;
+
     if (shouldRedirect) {
       return <Redirect to={'/orders'}></Redirect>;
     } else {
@@ -89,10 +101,16 @@ class SearchOrderPage extends Component {
             <Divider variant='middle' />
 
             <Grid item xs={12} align='center'>
-              <Button className={'search-orders-button'} onClick={this.submit}>
-                Search Orders
+              <Button className={'search-orders-button'} onClick={this.submit} disabled={!validCardAndEmail}>
+                { this.state.fetchingOrders ? <CircularProgress className={'search-order-loading'}/> : <div>Search Orders</div>}
               </Button>
             </Grid>
+            {
+              this.state.fetchOrdersFailed ? 
+              (<Grid item xs={12} align='center' className={'search-order-danger-text'}>
+                  No order available
+                </Grid>) : <></>
+            }
 
           </Grid>
         </Grid>

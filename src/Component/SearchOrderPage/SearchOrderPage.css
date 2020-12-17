@@ -22,3 +22,15 @@
   padding: .7rem 0 !important;
   margin: .7rem 0 !important;
 }
+
+.search-orders-button:disabled {
+  background-color: #838383 !important;
+}
+
+.search-order-danger-text {
+  color: #ff6161;
+} 
+
+.search-order-loading {
+  color: #71d131 !important;
+}
