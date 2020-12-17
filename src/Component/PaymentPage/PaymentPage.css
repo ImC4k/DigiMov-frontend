@@ -18,25 +18,61 @@
   color: #000000;
 }
 
-.search-box {
-  margin-top: 1%;
-  font-size: 130%;
+.payment-proceed-button {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  /* color: white !important;
+  background-color: #6e6e6e !important; */
+  border-radius: 0 !important;
+  font-size: larger !important;
   font-weight: 500;
-  border: none;
-  color: #6b6b6b;
+  padding: 4% !important;
+  width: 100%;
+  text-transform: capitalize !important; 
 }
 
-input.search-box:focus {
-  outline: none;
-}
-
-.search-box::placeholder {
+.payment-movie-name {
+  margin-top: 5px;
+  font-size: x-large;
+  font-weight: 300;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #bfbfbf;
 }
 
-.indicator-text {
+.payment-session-time {
+  font-size: large;
+  font-weight: 200;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  color: #7c7c7c;
+}
+
+.payment-session-house {
+  font-size: large;
+  font-weight: 200;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.payment-picked-seat-text{
+  margin-top: 5px;
+  font-size: large;
+  font-weight: 300;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+}
+
+.payment-price-type{
+  font-size: x-large;
+  font-weight: 200;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.payment-price{
+  font-size: large;
+  font-weight: 200;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.payment-proceed-button-section {
+  margin-top: 5% !important;
+}
+
+.payment-quantity-picker-card{
+  width: 100%
 }
