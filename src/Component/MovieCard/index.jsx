@@ -56,7 +56,7 @@ class index extends Component {
                             Genre
                         </Grid>
                         <Grid container item xs={12} className={'movie-info-content'}>
-                            {genres.map(genre=><div key={genre} className={'movie-info-genre'}>{genre.name}</div>)}
+                            {genres.map(genre=><div key={genre.id} className={'movie-info-genre'}>{genre.name}</div>)}
                         </Grid>
                         <Grid container item xs={12} className={'movie-info-title'}>
                             Language
