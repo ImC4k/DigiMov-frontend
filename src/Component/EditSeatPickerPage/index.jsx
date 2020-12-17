@@ -17,7 +17,7 @@ export default class index extends Component {
         isValidOrder: false,
         shouldRedirect: false,
         loadingData: true,
-        orderId: '5fdb34c8056af70d7a4a0d75'
+        orderId: this.props.editSeatPickerOrderId
         }   
     }
 
