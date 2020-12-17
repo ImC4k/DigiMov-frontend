@@ -6,20 +6,21 @@
   color: #646464;
 }
 
+.session-picker-sessions-dropdown-list {
+  border-radius: 5px;
+  margin: 5% 0;
+}
+
 .session-picker-sessions-dropdown {
-  font-size: 90%;
+  font-size: 80%;
   font-weight: 400;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
   box-shadow: 0px 3px 6px #48484829 !important;
-  border-radius: 5px;
-  margin-top: 5% !important;
-  margin-bottom: 5% !important;
 }
 
 .dropdown-header {
   background-color: #e3e3e3 !important;
-  border-radius: 5px 5px 0px 0px !important;
   color: black;
 }
 
