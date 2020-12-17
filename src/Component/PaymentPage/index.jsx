@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { convertSeatIndexToSeatText } from '../../Utils/seatIndexUtils';
 import {
+  generateCardIcon,
   checkCardType,
   isCardExpriyDateMonthValid,
   isCardExpriyDateYearValid,
@@ -352,7 +353,7 @@ class PaymentPage extends Component {
                     fullWidth></TextField>
                 </Grid>
                 <Grid container item xs={4} justify='flex-end'>
-                  {checkCardType(creditCardInfo.number)}
+                  {generateCardIcon(creditCardInfo.number)}
                 </Grid>
               </Grid>
 
@@ -375,7 +376,8 @@ class PaymentPage extends Component {
                     label='MM'
                     value={creditCardInfo.expiryDate.month}
                     onChange={this.handleOrderChange}
-                    error={creditCardInfo.expiryDate.month.length > 0 && !isCardExpriyDateMonthValid(creditCardInfo.expiryDate.month)}
+                    error={ creditCardInfo.expiryDate.month.length > 0 && (!isCardExpriyDateMonthValid(creditCardInfo.expiryDate.month)
+                      || !isCreditCardExpriyValid(creditCardInfo.expiryDate.month,creditCardInfo.expiryDate.year)) }
                     required></TextField>
                 </Grid>
                 <Grid container item xs={1} justify='center'>/</Grid>
@@ -385,13 +387,13 @@ class PaymentPage extends Component {
                     label='YY'
                     value={creditCardInfo.expiryDate.year}
                     onChange={this.handleOrderChange}
-                    error={creditCardInfo.cvv.length > 0 &&!isCardExpriyDateYearValid(creditCardInfo.expiryDate.year)}
+                    error={ creditCardInfo.expiryDate.year.length > 0 && (!isCardExpriyDateYearValid(creditCardInfo.expiryDate.year)
+                      || !isCreditCardExpriyValid(creditCardInfo.expiryDate.month,creditCardInfo.expiryDate.year)) }
                     required
                   ></TextField>
                 </Grid>
               </Grid>
 
-                {/* {isCreditCardExpriyValid(creditCardInfo.expiryDate.month,creditCardInfo.expiryDate.year)? 'True': 'False'} */}
               <Grid container item xs={12} className={'payment-card-row'} >
                 <TextField
                   fullWidth

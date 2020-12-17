@@ -1,6 +1,7 @@
 import visa_icon from './card_image/visa_icon_64.png'
 import unionpay_icon from './card_image/unionpay_icon_64.png'
 import master_icon from './card_image/master_icon_64.png'
+import './card_image/creditCardIcon.css'
 
 export const CARD_NUMBER_LIMIT = 16;
 export const HOLDER_NAME_LIMIT = 30;
@@ -38,16 +39,32 @@ export const isEmailValid = (email) => {
 
 export const checkCardType = (cardNumber) => {
     if (cardNumber.length !== CARD_NUMBER_LIMIT){
+        return INVALID
+    }
+    if (cardNumber.match(/^4[0-9]{12}(?:[0-9]{3})?$/)){
+        return VISA
+    }
+    if (cardNumber.match(/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/)){
+        return MASTER
+    }
+    if (cardNumber.match(/^(62[0-9]{14,17})$/)){
+        return UNIONPAY
+    }
+    return UNSUPPORTED_CARD
+}
+
+export const generateCardIcon = (cardNumber) => {
+    if (cardNumber.length !== CARD_NUMBER_LIMIT){
         return <></>
     }
     if (cardNumber.match(/^4[0-9]{12}(?:[0-9]{3})?$/)){
-        return <img src={visa_icon} alt={VISA}/>
+        return <img className={'credit-card-icon'} src={visa_icon} alt={VISA}/>
     }
     if (cardNumber.match(/^(5[1-5][0-9]{14}|2(22[1-9][0-9]{12}|2[3-9][0-9]{13}|[3-6][0-9]{14}|7[0-1][0-9]{13}|720[0-9]{12}))$/)){
-        return <img src={master_icon} alt={MASTER}/>
+        return <img className={'credit-card-icon'} src={master_icon} alt={MASTER}/>
     }
     if (cardNumber.match(/^(62[0-9]{14,17})$/)){
-        return <img src={unionpay_icon} alt={UNIONPAY}/>
+        return <img className={'credit-card-icon'} src={unionpay_icon} alt={UNIONPAY}/>
     }
-    return UNSUPPORTED_CARD
+    return <></>
 }

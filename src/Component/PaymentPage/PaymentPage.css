@@ -81,15 +81,16 @@
 }
 
 .make-payment-button, .make-payment-button:active, .make-payment-button:focus {
-  border-radius: 6px;
-  background-color: #000000;
+  margin-bottom: 2rem !important;
+  border-radius: 6px !important;
+  background-color: #000000 !important;
   width: 100%;
-  font-size: 1.1rem;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: capitalize;
+  font-size: 1.1rem !important;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  text-transform: capitalize !important;
   color: white !important;
 }
 
 .make-payment-button:disabled {
-  background-color: #919191;
+  background-color: #919191 !important;
 }
