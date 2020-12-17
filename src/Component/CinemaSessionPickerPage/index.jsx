@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
 import { Divider, Grid } from '@material-ui/core';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import '../Style/commonStyle.css';
 
 import { getCinema } from '../../apis/cinema';
 import { getUpcomingMovieSessionListByCinemaId } from '../../apis/movieSession';
+import CircularLoading from '../Style/CircularLoading';
 
 import MovieSessionListContainer from '../../Container/CinemaSessionPickerPageContainer/MovieSessionListContainer'
 
@@ -27,9 +27,7 @@ function CineamSessionPicker() {
             getCinema(cinemaId).then((response) => {
                 //Todo: Enhancement update fetched movie to redux
                 setCinema(response.data);
-            }).finally(() => {
-                setLoadingData(false)
-            });
+            })
         }
        if(movieSessions.length === 0){
         
@@ -52,20 +50,17 @@ function CineamSessionPicker() {
                 <Grid container item xs={12}>
                     <div className={'section-header'}>Movies on Show</div>
                 </Grid>
-                {cinema === undefined ? (
-                    loadingData ? 
-                    (<Grid container item xs={12} justify="center"><CircularProgress className={'loading-cirle'}/></Grid>) : 
-                    (<Grid container item xs={12}>Disconnected from server</Grid>)
-                ) : (
+
+                { loadingData ? <Grid container item xs={12} justify="center"><CircularLoading /></Grid> : (
+                    cinema === undefined ? <Grid container item xs={12}>Disconnected from server</Grid> : (
+                        
                     <Grid container item xs={12}>
                         <Grid item xs={12}><div className={'section-sub-header'}>{cinema.name}</div></Grid>
                         <Grid item xs={12}><Divider className='margin-divider'/></Grid>
-                        {movieSessions.length === 0 ? 
-                        <div>No available sessions</div>:
-                        <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>
-                        }
+                        { movieSessions.length === 0 ? <div>No available sessions</div> : <Grid item xs={12}><MovieSessionListContainer movieSessions= {movieSessions}/></Grid>}
                     </Grid>
-                )}
+                ))}
+                
             </Grid>
         </Grid>
     );

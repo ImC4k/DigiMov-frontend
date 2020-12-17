@@ -4,7 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
 import { useLocation, useHistory } from 'react-router-dom';
 import '../Style/commonStyle.css';
-import './MovieSessionPickerPage.css';
+import '../CinemaSessionPickerPage/CinemaSessionPickerPage.css';
 
 function MovieSessionList({ movieSessions, newBookingSession }) {
   let history = useHistory();
@@ -52,17 +52,6 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
 
       return map;
     }, {});
-  /*
-        movieSessionMap : {
-            $cinemaId : {
-                $year : {
-                    $month : {
-                        $date : [$sessions, ]
-                    }, ...
-                },...
-            },...
-        }
-    */
 
   const onClickMovieSession = (movieSession) => {
     newBookingSession(movieSession, pathname);
@@ -111,7 +100,7 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
                 <Grid container item xs={8} className={'session-picker-movie-name'} alignItems='center'>
                   {cinemaMap[movieId].name}
                 </Grid>              
-                <Grid container item xs={12}>
+                <Grid container item xs={12} className={'session-picker-sessions-dropdown-list'}>
                   {Object.keys(movieSessionMap[movieId]).map(
                     (movieSessionByYear) => {
                       return Object.keys( movieSessionMap[movieId][movieSessionByYear]).map((movieSessionByMonth) => {
