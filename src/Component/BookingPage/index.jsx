@@ -8,6 +8,8 @@ import PaymentPage from '../PaymentPage'
 import OrderCompletePage from '../OrderCompletePage'
 import ProgressBar from './ProgressBar'
 
+import { proceedSeat } from '../../apis/booking';
+
 import '../Style/commonStyle.css'
 
 const SEAT_PICKER = 1
@@ -26,6 +28,14 @@ class BookingPage extends Component {
             successOrderId : ""
         }
     }
+
+    componentWillUnmount(){
+        const {movieSession, clientSessionId, confirmedSeats} = this.state;
+        if(confirmedSeats.length > 0){
+            proceedSeat(movieSession.id, clientSessionId, confirmedSeats);
+        }
+    }
+
     proceedSuccess = (confirmedSeats, movieSession) =>{
         this.setState({confirmedSeats, movieSession, bookingStage: PAYMENT});
     }

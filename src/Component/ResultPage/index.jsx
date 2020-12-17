@@ -34,7 +34,6 @@ const PaymentRequestPage = () => {
     }
 
     useEffect(() => {
-        console.log(orderId)
         getOrderById(orderId).then((response) => {
             setOrder(response.data);
             setIsInValidOrder(true);

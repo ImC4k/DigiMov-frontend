@@ -37,7 +37,6 @@ function MovieSessionPicker() {
     useEffect(() => {
         if(movie.id === undefined && getMovieRetryCounter > 0){
             setLoadingData(true);
-            console.log("fetch movie: "+movieId+"from server");
             setLoadingData(true);
             getMovie(movieId).then((response) => {
                 setMovie(response.data);
@@ -48,10 +47,8 @@ function MovieSessionPicker() {
         }
         
         if(movieSessions.length === 0 && getMovieSessionRetryCounter > 0){
-            console.log("fetch movie sessions from server");
             setLoadingData(true);
             getUpcomingMovieSessionListByMovieId(movieId).then((response) => {
-                console.log(response.data)
                 setMovieSession(response.data);
             }).finally(() => {
                 setLoadingData(false);

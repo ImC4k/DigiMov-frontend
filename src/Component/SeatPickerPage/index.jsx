@@ -29,18 +29,12 @@ export default class index extends Component {
   onClickProceedButton = () => {
     const {movieSession, clientSessionId, proceedSuccess, proceedFailure} = this.props;
     const {chosenSeat} = this.state;
-    console.log('Proceed Info:')
-    console.log('id: '+movieSession.id);
-    console.log('clientSessionId:'+clientSessionId);
-    console.log('chosenSeat');
-    console.log(chosenSeat);
     proceedSeat(movieSession.id, clientSessionId, chosenSeat).then((response) => {
-      console.log("Proceed success!");
       proceedSuccess(chosenSeat, response.data)
     })
     .catch((error) => {
-      console.log(error);
       getMovieSessionListById(movieSession.id).then((response) => {
+        this.setState({chosenSeat: []});
         proceedFailure(response.data);
       })
     })
