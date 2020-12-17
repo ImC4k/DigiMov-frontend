@@ -33,7 +33,7 @@ export default class HomePage extends Component {
             ) : (<p className={'indicator-text'}>No available cinema</p>);
 
         return (
-            <Grid container justify='center' alignItems='center'>
+            <Grid container justify='center' alignItems='center' className={'information'}>
                 <Grid container item xs={10} className={'paper-content'}>
                     <Grid container item xs={12} >
                         <Grid container item xs={8} >

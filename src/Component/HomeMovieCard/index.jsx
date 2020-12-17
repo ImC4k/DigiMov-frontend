@@ -3,7 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import { ERROR_IMAGE } from '../../assets';
-import './MovieCard.css';
+import './HomeMovieCard.css';
 import { Grid } from "@material-ui/core";
 
 export default class HomeMovieCard extends Component {
