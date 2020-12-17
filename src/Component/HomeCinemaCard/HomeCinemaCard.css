@@ -1,13 +1,26 @@
-.card {
+/* .card {
   position: relative;
+} */
+
+.home-cinema-card-shadow {
+  width: 400%;
+  border-radius: 10px !important;
+  box-shadow: 0px 3px 6px #00000029 !important;
 }
 
 .overlay {
+  top: 70%;
+  padding-left: 1rem;
   position: absolute;
-  top: 50%;
   color: white;
-  font-size: 20px;
-
-  /* font: normal normal bold 20px/25px Helvetica Neue; */
+  font-size: large;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.514);
+  padding: 2px 100% 2px 10px;
 }
 
+.home-cinema-card-image {
+  height: 9rem !important;
+}
+/* font: normal normal bold 20px/25px Helvetica Neue; */

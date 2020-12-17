@@ -1,0 +1,2 @@
+export const INIT_ORDER_RESPONSE = 'INIT_ORDER_RESPONSE';
+export const SET_ORDER_ID = 'SET_ORDER_ID';

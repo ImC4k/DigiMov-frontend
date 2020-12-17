@@ -1,5 +1,5 @@
 import './PaymentResultPage.css';
-import '../Style/commonStyle.css'
+import '../Style/commonStyle.css';
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Grid, Button, CircularProgress } from '@material-ui/core';
@@ -14,7 +14,7 @@ function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 }
 
@@ -160,9 +160,38 @@ const PaymentRequestPage = () => {
                       />
                     </Grid>
                 </Grid>
+                );
+            })}
             </Grid>
-        </div>
-    );
+
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={8}>
+              <div className={'result-item-title'}>Total</div>
+            </Grid>
+            <Grid container item xs={4}>
+              <div>
+                $
+                {Object.keys(customerGroupQuantityMap)
+                  .map((ticketType) => calculateSubtotal(ticketType))
+                  .reduce((total, subTotal) => total + subTotal, 0)}
+              </div>
+            </Grid>
+          </Grid>
+          <Grid container item xs={12} className={'result-item-container'}>
+            <div className={'result-item-title'}>Digi-ticket</div>
+          </Grid>
+          <Grid container item xs={12}>
+            <QRCode
+              size={windowDimensions.width * 0.8}
+              value='http://facebook.github.io/react/'
+              className='qrcode'
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
+  );
 };
 
 export default PaymentRequestPage;

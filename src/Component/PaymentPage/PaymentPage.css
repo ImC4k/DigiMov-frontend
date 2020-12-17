@@ -81,7 +81,6 @@
 }
 
 .make-payment-button, .make-payment-button:active, .make-payment-button:focus {
-  margin-bottom: 2rem !important;
   border-radius: 6px !important;
   background-color: #000000 !important;
   width: 100%;
