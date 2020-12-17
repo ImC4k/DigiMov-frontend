@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 import {v4 as uuid} from 'uuid';
 import { Redirect } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
+import { Grid} from '@material-ui/core';
 
 import SeatPickerPage from '../SeatPickerPage'
 import PaymentPage from '../PaymentPage'
+import OrderCompletePage from '../OrderCompletePage'
+import ProgressBar from './ProgressBar'
 
 import '../Style/commonStyle.css'
 
 const SEAT_PICKER = 1
 const PAYMENT = 2
+const COMPLETE = 3
 class BookingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
             shouldRedirectToPrevSession : false, 
-            bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment
+            shouldRedirectToResultPage : false,
+            bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment 3: complete
             sessionId : uuid(),
             confirmedSeats : [],
-            movieSession: this.props.movieSession
+            movieSession: this.props.movieSession,
+            successOrderId : ""
         }
     }
     proceedSuccess = (confirmedSeats, movieSession) =>{
@@ -29,12 +34,26 @@ class BookingPage extends Component {
         this.setState({movieSession});
     }
 
+    paymentComplete = (successOrderId) => {
+        this.setState({
+            successOrderId, 
+            bookingStage : COMPLETE
+        });
+        this.toggleRedirectToResultPage();
+    }
+
+    toggleRedirectToResultPage = () => { 
+        setTimeout(() => { 
+            this.setState({shouldRedirectToResultPage: true});
+        }, 1500)
+    };
+
     backToPrevSession = () => {
         this.setState({shouldRedirectToPrevSession : true})
     }
     
     render(){
-        const { shouldRedirectToPrevSession, bookingStage, movieSession, confirmedSeats, sessionId } = this.state;
+        const { shouldRedirectToPrevSession, shouldRedirectToResultPage, bookingStage, movieSession, confirmedSeats, sessionId, successOrderId } = this.state;
 
         const { previousPage } = this.props;
 
@@ -48,13 +67,24 @@ class BookingPage extends Component {
             //expected selected movie session in redux, if not found, redirect to home
             return <Redirect to={previousPage}></Redirect>;
         }
+        if( shouldRedirectToResultPage ){
+            //expected selected movie session in redux, if not found, redirect to home
+            return <Redirect to={'/orders/'+successOrderId}></Redirect>;
+        }
 
         return (
-            <Grid container justify='center' alignItems='center'>
+            <Grid container justify='center' alignItems='center'>                
+            <ProgressBar value={(bookingStage === SEAT_PICKER ? 30 : bookingStage === PAYMENT ? 60 :100)}/>
+            {bookingStage !== COMPLETE &&
+            <Grid container item xs={10} className={'custom-breadcrumbs'} onClick={this.backToPrevSession}>
+                Back to sessions
+            </Grid>
+            }
                 {bookingStage === SEAT_PICKER ?
                     <SeatPickerPage movieSession={movieSession} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
-                :
-                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} sessionId={sessionId}/>
+                :bookingStage === PAYMENT ?
+                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} sessionId={sessionId} paymentComplete={this.paymentComplete}/>
+                :   <OrderCompletePage/>
                 }
             </Grid>
         )

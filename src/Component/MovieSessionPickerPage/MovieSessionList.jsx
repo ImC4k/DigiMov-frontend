@@ -1,29 +1,18 @@
 import React from 'react';
-import { Grid, Divider, Modal, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
+import { Grid, Divider, Accordion, AccordionSummary, AccordionDetails } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
 import { useLocation, useHistory } from 'react-router-dom';
 import '../Style/commonStyle.css';
-import './CinemaSessionPickerPage.css';
-
-import MovieInfoModal from '../MovieInfoModal';
+import './MovieSessionPickerPage.css';
 
 function MovieSessionList({ movieSessions, newBookingSession }) {
   let history = useHistory();
   let { pathname } = useLocation();
-  const [open, setOpen] = React.useState(false);
-  const [movieInfoInModal, setMovieInfoInModal] = React.useState({});
   const [keyword, setKeyword] = React.useState('');
 
-  const handleOpen = (movieInfoInModal) => {
-    setOpen(true);
-    setMovieInfoInModal(movieInfoInModal);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const movieMap = {};
+  const cinemaMap = {};
   const movieSessionMap = movieSessions
     .sort((a, b) => (a.startTime < b.startTime ? -1 : 1))
     .reduce((map, item) => {
@@ -31,31 +20,33 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
 
       const startTimeMap = startTime.toObject();
 
-      if (map[item.movie.id] === undefined) {
-        map[item.movie.id] = {};
-        if (movieMap[item.movie.id] === undefined) {
-          movieMap[item.movie.id] = item.movie;
+      const cinemaId = item.house.cinema.id;
+
+      if (map[cinemaId] === undefined) {
+        map[cinemaId] = {};
+        if (cinemaMap[cinemaId] === undefined) {
+          cinemaMap[cinemaId] = item.house.cinema;
         }
       }
-      if (map[item.movie.id][startTimeMap.year] === undefined) {
-        map[item.movie.id][startTimeMap.year] = {};
+      if (map[cinemaId][startTimeMap.year] === undefined) {
+        map[cinemaId][startTimeMap.year] = {};
       }
       if (
-        map[item.movie.id][startTimeMap.year][startTimeMap.month] === undefined
+        map[cinemaId][startTimeMap.year][startTimeMap.month] === undefined
       ) {
-        map[item.movie.id][startTimeMap.year][startTimeMap.month] = {};
+        map[cinemaId][startTimeMap.year][startTimeMap.month] = {};
       }
       if (
-        map[item.movie.id][startTimeMap.year][startTimeMap.month][
+        map[cinemaId][startTimeMap.year][startTimeMap.month][
           startTimeMap.date
         ] === undefined
       ) {
-        map[item.movie.id][startTimeMap.year][startTimeMap.month][
+        map[cinemaId][startTimeMap.year][startTimeMap.month][
           startTimeMap.date
         ] = [];
       }
       item.startTimeInMoment = startTime;
-      map[item.movie.id][startTimeMap.year][startTimeMap.month][
+      map[cinemaId][startTimeMap.year][startTimeMap.month][
         startTimeMap.date
       ].push(item);
 
@@ -63,7 +54,7 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
     }, {});
   /*
         movieSessionMap : {
-            $movieId : {
+            $cinemaId : {
                 $year : {
                     $month : {
                         $date : [$sessions, ]
@@ -106,11 +97,11 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
         value={keyword}
         onChange={(event) => setKeyword(event.target.value)}
       />
-      {Object.keys(movieMap)
+      {Object.keys(cinemaMap)
         .filter(function (movieId) {
           return keyword === ''
             ? true
-            : movieMap[movieId].name
+            : cinemaMap[movieId].name
                 .toLowerCase()
                 .indexOf(keyword.toLowerCase()) >= 0; //force toLowerCase to ignore case
         })
@@ -118,34 +109,23 @@ function MovieSessionList({ movieSessions, newBookingSession }) {
           return (
             <Grid container item xs={12} key={movieId}>
                 <Grid container item xs={8} className={'session-picker-movie-name'} alignItems='center'>
-                  {movieMap[movieId].name}
-                </Grid>
-                <Grid container item xs={4} onClick={() => handleOpen(movieMap[movieId])} className={'link-style-button'} justify='flex-end' alignItems='center'>
-                    More details
-                </Grid>
-
-              <Grid container item xs={12} className={'session-picker-sessions-dropdown-list'}>
-                {Object.keys(movieSessionMap[movieId]).map(
-                  (movieSessionByYear) => {
-                    return Object.keys( movieSessionMap[movieId][movieSessionByYear]).map((movieSessionByMonth) => {
-                      return Object.keys(movieSessionMap[movieId][movieSessionByYear][movieSessionByMonth]).map((movieSessionByDay) => {
-                        return renderMovieSession(movieSessionMap[movieId][movieSessionByYear][movieSessionByMonth][movieSessionByDay]);
+                  {cinemaMap[movieId].name}
+                </Grid>              
+                <Grid container item xs={12}>
+                  {Object.keys(movieSessionMap[movieId]).map(
+                    (movieSessionByYear) => {
+                      return Object.keys( movieSessionMap[movieId][movieSessionByYear]).map((movieSessionByMonth) => {
+                        return Object.keys(movieSessionMap[movieId][movieSessionByYear][movieSessionByMonth]).map((movieSessionByDay) => {
+                          return renderMovieSession(movieSessionMap[movieId][movieSessionByYear][movieSessionByMonth][movieSessionByDay]);
+                        });
                       });
-                    });
-                  }
-                )}
-              </Grid>
-
+                    }
+                  )}
+                </Grid>
               <Divider />
             </Grid>
           );
         })}
-
-      <Modal open={open} onClose={handleClose}>
-        <div>
-          <MovieInfoModal movie={movieInfoInModal} />
-        </div>
-      </Modal>
     </div>
   );
   return <>{renderMovieSessions}</>;
