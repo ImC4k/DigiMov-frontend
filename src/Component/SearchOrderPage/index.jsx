@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { getOrder } from './../../apis/order';
 import { Redirect } from 'react-router-dom';
 import './SearchOrderPage.css';
-import {checkCardType, isEmailValid, INVALID, UNSUPPORTED_CARD} from '../../Utils/creditCardUtils'
+import {checkCardType, isEmailValid, INVALID} from '../../Utils/creditCardUtils'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const CARD_NUMBER_ID = 'card-number';
