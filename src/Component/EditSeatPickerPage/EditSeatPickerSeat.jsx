@@ -30,7 +30,6 @@ export default class EditSeatPickerSeat extends Component {
         seatColorClass = 'seat-picker-clicked-seat';
       }
     } else if (this.props.chosenSeat.includes(this.props.index)) {
-        console.log("changed seat");
       seatColorClass = 'seat-picker-clicked-seat';
     }
 

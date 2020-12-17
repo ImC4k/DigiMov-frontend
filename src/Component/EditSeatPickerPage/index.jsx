@@ -1,55 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Grid } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 import '../SeatPickerPage/SeatPickerPage.css';
 import '../Style/commonStyle.css';
 import clsx from 'clsx';
 import EditSeatPickerTable from './EditSeatPickerTable.jsx';
-import { getOrderById } from '../../apis/order';
+import { getOrderById, editSeatPosition } from '../../apis/order';
 
-const orderId = '5fd817c808d4a5464c26de89';
-
-const orderResponse = {
-    id: '5fd817c808d4a5464c26de89',
-    bookedSeatIndices: [34,35],
-    movieSession: {
-        id: '123',
-        movie: {
-            id: '5fd817c808d4a5464c26de89',
-            name: 'Beyond The Dream',
-            duration: 120,
-            cast: ['Terrance Lau', 'Cecilia Choi'],
-            genres: [{ name: 'Romance' }, { name: 'Drama' }],
-            director: 'Kiwi Chow',
-            description:
-                'Lok (Terrance Lau) is a recovering schizophrenic who yearns for love. One day, he encounters the young and beautiful Yan (Cecilia Choi) and quickly falls in love with her. Just when he struggles whether to tell her about his illness, he has a relapse and becomes delusional. Little does he know that she’s a psychological counselor who has a hidden agenda. The pair develops a relationship that is beyond their wildest dreams.',
-            imageUrl:
-                'https://wmoov.com/assets/movie/photo/201912/FB_IMG_1576452551183_1576574597.jpg',
-            rating: 'IIB',
-            language: 'Cantonese (Sub: Chinese, English)',
-        },
-        house: {
-            id: '1234123',
-            cinemaId: 'cinema1',
-            name: 'House 1',
-            capacity: 70,
-        },
-        startTime: 1608021005000,
-        prices: {
-            student: 10.0,
-            adult: 20.0,
-            elderly: 50.0,
-        },
-        occupied: {
-            24: { status: 'sold' },
-            25: { status: 'in process' },
-            34: { status: 'sold' },
-            35: { status: 'sold' },
-            44: { status: 'sold' },
-            45: { status: 'sold' },
-        },
-        occupancyCount: 5,
-    },
-};
 
 export default class index extends Component {
   constructor(props) {
@@ -58,12 +15,15 @@ export default class index extends Component {
     this.state = {
         orderResponse: {},
         chosenSeat: [],
-        isValidOrder: false
+        isValidOrder: false,
+        shouldRedirect: false,
+        orderId: '5fdb34c8056af70d7a4a0d75'
         }   
     }
 
     componentDidMount() {
-        getOrderById(this.props.orderId).then((response) => {
+        const{orderId} = this.state;
+        getOrderById(orderId).then((response) => {
           this.setState({
               orderResponse: response.data,
               chosenSeat: response.data.bookedSeatIndices,
@@ -74,8 +34,6 @@ export default class index extends Component {
 
   updateChoseSeat = (seatNumber) => {
     let newChosenSeats = this.state.chosenSeat;
-    console.log(seatNumber);
-    console.log(newChosenSeats);
     if (this.state.chosenSeat.includes(seatNumber)) {
       newChosenSeats = newChosenSeats.filter((seat) => seat !== seatNumber);
     } else {
@@ -88,18 +46,31 @@ export default class index extends Component {
   };
 
   onClickProceedButton = () => {
-    // const {proceedSuccess} = this.props;
-    // const {chosenSeat, movieSessionResponse} = this.state;
-    //to be updated: call api to proceed
-    // proceedSuccess(chosenSeat, movieSessionResponse)
+    const{orderId} = this.state;
+    editSeatPosition(orderId, this.state.chosenSeat).then((response) => {
+        this.setState({ shouldRedirect: true });
+    }).catch((exception) => {
+        window.confirm("Sorry, the seat you have chosen might not be available, please choose again.")
+        getOrderById(orderId).then((response) => {
+            this.setState({
+                orderResponse: response.data,
+                chosenSeat: response.data.bookedSeatIndices,
+                isValidOrder: true
+            })
+          });
+    } )
   }
+  redirectToResultPage() {
+    const{orderId} = this.state;
+    return <Redirect to={'/orders/' + orderId}></Redirect>;
+}  
 
   render() {
-    const { orderResponse } = this.state;
+    const { orderResponse, shouldRedirect } = this.state;
     let session = orderResponse.movieSession;
     let startDate = '';
     let startTime = '';
-    if(this.state.isValidOrder){
+    if(this.state.isValidOrder && orderResponse!==[]){
         session = orderResponse.movieSession;
         startDate = new Date(session.startTime).toLocaleDateString(
         'zh-Hans-CN'
@@ -112,7 +83,9 @@ export default class index extends Component {
     }
     
 
-    return (
+    if (shouldRedirect) {
+        return this.redirectToResultPage();
+    } else { return (
         this.state.isValidOrder?
       <Grid container>
         <Grid item xs={1}></Grid>
@@ -153,5 +126,6 @@ export default class index extends Component {
       </Grid>
       : <span className={'main-content'}>Order not valid</span>
     );
+  }
   }
 }

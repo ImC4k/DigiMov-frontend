@@ -23,7 +23,6 @@ export default class EditSeatPickerTable extends Component {
   };
 
   render() {
-      console.log(this.props.bookedSeatIndices);
     const seatsNumber = Array.from(Array(11)).map((_, index) => {
       return (
         <div className={'seat-picker-table-number-label'} key={index}>
