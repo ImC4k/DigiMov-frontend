@@ -31,7 +31,7 @@ class index extends Component {
 
     render() {
         const { shouldRedirect } = this.state;
-        const { name, address, id } = this.props.cinema;
+        const { name, address, id, hotline } = this.props.cinema;
         if (shouldRedirect) {
             return this.redirectToCinemaSession(id);
         } else {
@@ -60,6 +60,13 @@ class index extends Component {
                                 component='p'
                             >
                                 {address}
+                            </Typography>
+                            <Typography
+                                className={'card-description'}
+                                color='textSecondary'
+                                component='p'
+                            >
+                                Hotline: {hotline}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
