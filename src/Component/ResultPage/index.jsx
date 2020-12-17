@@ -70,96 +70,62 @@ const PaymentRequestPage = () => {
     //can get data
     return (
         <div>
-            <Grid container justify='center' alignItems='center'>
-                <Grid container item xs={10} className={'paper-content'}>
-                    <Grid container item xs={12}>
-                      <Grid container item xs={8}>
-                        <div className={'section-title'}>Booking Info</div>
-                      </Grid>
-                      <Grid container item xs={4}>
-                        <Button onClick={onClickEditSeatButton}>Edit Seats</Button>
-                      </Grid>
+      <Grid container justify='center' alignItems='center'>
+        <Grid container item xs={10} className={'main-content'}>
+          <Grid container item xs={12} alignItems='center'>
+            <Grid container item xs={8}>
+              <div className={'section-title'}>Booking Info</div>
+            </Grid>
+            <Grid container item xs={4} justify={'flex-end'}>
+              <Button className={'edit-seat-button'} onClick={onClickEditSeatButton}>Edit Seats</Button>
+            </Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Reference No.</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{order.id}</Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Movie</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{movieSession.movie.name}</Grid>
+          </Grid>
+          
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Session</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{moment(movieSession.startTime).format('YYYY/MM/DD HH:mm').toString()}</Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>House</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{movieSession.house.name}</Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Seats</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{order.bookedSeatIndices.map(convertSeatIndexToSeatText).join(', ')}</Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Payment</Grid>
+            {Object.keys(movieSession.prices).map((priceType) => {
+                return (
+                <Grid container item xs={12} key={priceType}>
+                    <Grid container item xs={4} className={'payment-price'}>
+                    {priceType}
                     </Grid>
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>Reference No.</div>
+                    <Grid container item xs={2} className={'payment-price'}>
+                    {customerGroupQuantityMap[priceType]}x
                     </Grid>
-                    <Grid container item xs={12}>
-                        {order.id}
+                    <Grid container item xs={2} className={'payment-price'}>
+                    ${movieSession.prices[priceType]}
                     </Grid>
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>Movie</div>
-                    </Grid>
-                    <Grid container item xs={12}>
-                        {movieSession.movie.name}
-                    </Grid>
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>Session</div>
-                    </Grid>
-                    <Grid container item xs={12}>
-                        {moment(movieSession.startTime)
-                            .format('YYYY/MM/DD HH:mm')
-                            .toString()}
-                    </Grid>
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>House</div>
-                    </Grid>
-                    <Grid container item xs={12}>
-                        {movieSession.house.name}
-                    </Grid>
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>Seats</div>
-                    </Grid>
-                    <Grid container item xs={12}>
-                        {order.bookedSeatIndices.map(convertSeatIndexToSeatText).join(', ')}
-                    </Grid>
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>Payment</div>
-                    </Grid> 
-                    {Object.keys(movieSession.prices).map(priceType => {
-                        return <Grid container item xs={12} key={priceType}>
-                                <Grid container item xs={4} className={'payment-price'}>
-                                    {priceType}
-                                </Grid>
-                                <Grid container item xs={2} className={'payment-price'}>
-                                    {customerGroupQuantityMap[priceType]}x 
-                                </Grid>
-                                <Grid container item xs={2} className={'payment-price'}>
-                                    ${movieSession.prices[priceType]}  
-                                </Grid>
-                                <Grid container item xs={4} className={'payment-price'}>
-                                    <span>${calculateSubtotal(priceType)}</span>
-                                </Grid>
-                            </Grid>
-                        
-                    })}
-                    <Grid container item xs={12}>
-                        <Grid container item xs={8}>
-                            <div className={'sub-section-title'}>Total</div>
-                        </Grid> 
-                        <Grid container item xs={4}>
-                            <div>
-                            ${Object.keys(customerGroupQuantityMap)
-                                .map(ticketType => 
-                                    (calculateSubtotal(ticketType))
-                                )
-                                .reduce((total, subTotal) =>
-                                    (total + subTotal),
-                                    0
-                                )}
-                            </div>
-                        </Grid>
-                    </Grid> 
-                    <Grid container item xs={12}>
-                        <div className={'sub-section-title'}>Digi-ticket</div>
-                    </Grid>
-                    <Grid container item xs={12}>
-                      <QRCode
-                          size={windowDimensions.width*.8}
-                          value='http://facebook.github.io/react/'
-                          className='qrcode'
-                      />
+                    <Grid container item xs={4} className={'payment-price'}>
+                    <span>${calculateSubtotal(priceType)}</span>
                     </Grid>
                 </Grid>
+                );
+            })}
             </Grid>
 
 
@@ -186,6 +152,8 @@ const PaymentRequestPage = () => {
               className='qrcode'
             />
           </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 };
