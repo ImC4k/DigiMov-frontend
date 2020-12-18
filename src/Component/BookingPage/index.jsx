@@ -42,9 +42,11 @@ class BookingPage extends Component {
     }
 
     componentWillUnmount(){
-        const {movieSession, clientSessionId, confirmedSeats} = this.state;
-        if(confirmedSeats.length > 0){
-            proceedSeat(movieSession.id, clientSessionId, confirmedSeats);
+        const {movieSession, clientSessionId, confirmedSeats, bookingStage} = this.state;
+        if(confirmedSeats.length > 0 && bookingStage !== COMPLETE_STAGE){
+            proceedSeat(movieSession.id, clientSessionId, confirmedSeats).then(response =>{
+
+            }).catch(error =>{});
         }
     }
 
