@@ -34,9 +34,11 @@ class BookingPage extends Component {
 
     componentDidMount(){
         const { movieSession } = this.state;
-        getMovieSessionListById(movieSession.id).then((response) => {
-            this.setState({movieSession: response.data});
-        })
+        if(movieSession !== undefined){
+            getMovieSessionListById(movieSession.id).then((response) => {
+                this.setState({movieSession: response.data});
+            })
+        }
     }
 
     componentWillUnmount(){
