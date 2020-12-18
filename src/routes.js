@@ -80,7 +80,7 @@ const routes = [
   {
     name: 'searchOrder',
     path: '/searchorder',
-    description: 'Search Order',
+    description: 'Manage Orders',
     component: SearchOrderPageConainer,
     isShowOnDrawer: true
   },
