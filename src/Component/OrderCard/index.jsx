@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './OrderCard.css';
 import { Grid } from '@material-ui/core';
-import { Redirect } from 'react-router-dom';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 class index extends Component {
   constructor(props) {
