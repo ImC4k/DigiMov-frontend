@@ -102,6 +102,11 @@ const PaymentRequestPage = ({setOrderId}) => {
           </Grid>
 
           <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Cinema</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{movieSession.house.cinema.name}</Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
             <Grid container item xs={12} className={'result-item-title'}>House</Grid>
             <Grid container item xs={12} className={'payment-price'}>{movieSession.house.name}</Grid>
           </Grid>

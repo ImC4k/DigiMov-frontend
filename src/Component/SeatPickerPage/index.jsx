@@ -31,7 +31,8 @@ export default class index extends Component {
     proceedSeat(movieSession.id, clientSessionId, chosenSeat).then((response) => {
       proceedSuccess(chosenSeat, response.data)
     })
-    .catch((error) => {
+    .catch(() => {
+      alert("Seats not available");
       getMovieSessionListById(movieSession.id).then((response) => {
         this.setState({chosenSeat: []});
         proceedFailure(response.data);
