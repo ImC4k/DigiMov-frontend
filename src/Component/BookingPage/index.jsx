@@ -9,6 +9,7 @@ import OrderCompletePage from '../OrderCompletePage'
 import ProgressBar from './ProgressBar'
 
 import { proceedSeat } from '../../apis/booking';
+import { getMovieSessionListById } from '../../apis/movieSession'
 
 import '../Style/commonStyle.css'
 
@@ -29,6 +30,13 @@ class BookingPage extends Component {
             movieSession: this.props.movieSession,
             successOrderId : ""
         }
+    }
+
+    componentDidMount(){
+        const { movieSession } = this.state;
+        getMovieSessionListById(movieSession.id).then((response) => {
+            this.setState({movieSession: response.data});
+        })
     }
 
     componentWillUnmount(){
