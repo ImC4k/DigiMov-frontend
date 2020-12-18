@@ -7,21 +7,14 @@ class index extends Component {
     super(props);
     this.state = {
       order: this.props.order,
-      shouldRedirect: false,
     };
   }
 
-  redirectTo(order) {
-    this.setState({ shouldRedirect: true });
+  redirectTo() {
+    window.open(window.location.href + "/" + this.state.order.id);
   }
 
   render() {
-    var { shouldRedirect } = this.state;
-    if (shouldRedirect) {
-      // return <Redirect target="_blank" to={'/orders/' + this.state.order.id}></Redirect>;
-      window.open(window.location.href + "/" + this.state.order.id);
-      this.setState({shouldRedirect: false});
-    }
 
       const order = this.state.order;
       var paid = 0;
@@ -31,7 +24,7 @@ class index extends Component {
       }
 
       return (
-        <Grid container item xs={12} className={'order-card'} onClick={() => this.redirectTo(order)}>
+        <Grid container item xs={12} className={'order-card'} onClick={() => this.redirectTo()}>
           <Grid container item xs={10}>
 
             <Grid container item xs={12} className={'order-card-section'}>
