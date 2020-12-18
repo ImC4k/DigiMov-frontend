@@ -82,7 +82,7 @@ const PaymentRequestPage = ({setOrderId}) => {
               <div className={'section-title'}>Booking Info</div>
             </Grid>
             <Grid container item xs={4} justify={'flex-end'}>
-              <Button className={'edit-seat-button'} onClick={onClickEditSeatButton}>Edit Seats</Button>
+              <Button className={'edit-seat-button'} onClick={onClickEditSeatButton} disabled={new Date() > new Date(movieSession.startTime)}>Edit Seats</Button>
             </Grid>
           </Grid>
 
@@ -99,6 +99,11 @@ const PaymentRequestPage = ({setOrderId}) => {
           <Grid container item xs={12} className={'result-item-container'}>
             <Grid container item xs={12} className={'result-item-title'}>Session</Grid>
             <Grid container item xs={12} className={'payment-price'}>{moment(movieSession.startTime).format('YYYY/MM/DD HH:mm').toString()}</Grid>
+          </Grid>
+
+          <Grid container item xs={12} className={'result-item-container'}>
+            <Grid container item xs={12} className={'result-item-title'}>Cinema</Grid>
+            <Grid container item xs={12} className={'payment-price'}>{movieSession.house.cinema.name}</Grid>
           </Grid>
 
           <Grid container item xs={12} className={'result-item-container'}>

@@ -51,7 +51,7 @@ export default class index extends Component {
     editSeatPosition(orderId, this.state.chosenSeat).then((response) => {
         this.setState({ shouldRedirect: true });
     }).catch((exception) => {
-        window.confirm("Sorry, the seat you have chosen might not be available, please choose again.")
+        alert("Seats not available");
         getOrderById(orderId).then((response) => {
             this.setState({
                 orderResponse: response.data,

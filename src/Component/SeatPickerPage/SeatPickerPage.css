@@ -61,6 +61,10 @@
   margin-bottom: -1% !important;
 }
 
+.seat-picker-available-seat {
+  color: #00a015 !important;
+}
+
 .seat-picker-sold-seat {
   color: #ac0700 !important;
 }
