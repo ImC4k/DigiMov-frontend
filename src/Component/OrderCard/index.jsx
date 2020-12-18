@@ -19,8 +19,11 @@ class index extends Component {
   render() {
     var { shouldRedirect } = this.state;
     if (shouldRedirect) {
-      return <Redirect to={'/orders/' + this.state.order.id}></Redirect>;
-    } else {
+      // return <Redirect target="_blank" to={'/orders/' + this.state.order.id}></Redirect>;
+      window.open(window.location.href + "/" + this.state.order.id);
+      this.setState({shouldRedirect: false});
+    }
+
       const order = this.state.order;
       var paid = 0;
       for (var key in order.customerGroupQuantityMap) {
@@ -53,7 +56,7 @@ class index extends Component {
           </Grid>
         </Grid>
       );
-    }
+    
   }
 }
 
