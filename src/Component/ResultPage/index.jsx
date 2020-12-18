@@ -48,6 +48,9 @@ const PaymentRequestPage = ({setOrderId}) => {
     
 
     const calculateSubtotal = (priceType) => {
+      if (customerGroupQuantityMap[priceType] === undefined) {
+        return 0;
+      }
         return movieSession.prices[priceType] * customerGroupQuantityMap[priceType]
     }
     
@@ -117,7 +120,7 @@ const PaymentRequestPage = ({setOrderId}) => {
                     {priceType}
                     </Grid>
                     <Grid container item xs={2} className={'payment-price'}>
-                    {customerGroupQuantityMap[priceType]}x
+                    {customerGroupQuantityMap[priceType] === undefined ? 0 : customerGroupQuantityMap[priceType]}x
                     </Grid>
                     <Grid container item xs={2} className={'payment-price'}>
                     ${movieSession.prices[priceType]}
