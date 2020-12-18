@@ -82,7 +82,7 @@ const PaymentRequestPage = ({setOrderId}) => {
               <div className={'section-title'}>Booking Info</div>
             </Grid>
             <Grid container item xs={4} justify={'flex-end'}>
-              <Button className={'edit-seat-button'} onClick={onClickEditSeatButton}>Edit Seats</Button>
+              <Button className={'edit-seat-button'} onClick={onClickEditSeatButton} disabled={new Date() > new Date(movieSession.startTime)}>Edit Seats</Button>
             </Grid>
           </Grid>
 

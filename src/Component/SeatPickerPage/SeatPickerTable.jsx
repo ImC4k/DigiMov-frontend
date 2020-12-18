@@ -56,6 +56,12 @@ export default class seatPickerTable extends Component {
         <Grid container item xs={12} justify='center' style={{marginLeft: '3%'}}>
           {seatsNumber}
         </Grid>
+        <Grid item container xs={12} style={{marginTop: '2%'}}>
+          <Grid item container xs={3} className={'seat-picker-available-seat'} justify='center' > Available </Grid>
+          <Grid item container xs={3} className={'seat-picker-sold-seat'} justify='center' > Sold </Grid>
+          <Grid item container xs={3} className={'seat-picker-processing-seat'} justify='center' > In process </Grid>
+          <Grid item container xs={3} className={'seat-picker-clicked-seat'} justify='center' > Selected </Grid>
+        </Grid>
       </Grid>
     );
   }
