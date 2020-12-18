@@ -34,15 +34,19 @@ class BookingPage extends Component {
 
     componentDidMount(){
         const { movieSession } = this.state;
-        getMovieSessionListById(movieSession.id).then((response) => {
-            this.setState({movieSession: response.data});
-        })
+        if(movieSession !== undefined){
+            getMovieSessionListById(movieSession.id).then((response) => {
+                this.setState({movieSession: response.data});
+            })
+        }
     }
 
     componentWillUnmount(){
-        const {movieSession, clientSessionId, confirmedSeats} = this.state;
-        if(confirmedSeats.length > 0){
-            proceedSeat(movieSession.id, clientSessionId, confirmedSeats);
+        const {movieSession, clientSessionId, confirmedSeats, bookingStage} = this.state;
+        if(confirmedSeats.length > 0 && bookingStage !== COMPLETE_STAGE){
+            proceedSeat(movieSession.id, clientSessionId, confirmedSeats).then(response =>{
+
+            }).catch(error =>{});
         }
     }
 
