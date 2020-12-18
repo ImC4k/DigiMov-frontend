@@ -12,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
 import routes from '../../routes.js';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import './Drawer.css';
 
 const drawerWidth = 160;
@@ -52,6 +52,7 @@ export default function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -59,6 +60,11 @@ export default function PersistentDrawerLeft(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+
+  const redirectToHome = () => {
+    history.push('/');
+  }
 
   return (
     <div className={classes.root}>
@@ -68,7 +74,7 @@ export default function PersistentDrawerLeft(props) {
         className={'app-bar-background'}
       >
         <Toolbar>
-          <Typography className={'app-bar-app-name'} variant='h6' noWrap>
+          <Typography className={'app-bar-app-name'} variant='h6' noWrap onClick={redirectToHome}>
             Digi<span className={'bold-app-name'}>Mov</span>
           </Typography>
 
