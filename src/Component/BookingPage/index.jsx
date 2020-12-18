@@ -9,19 +9,22 @@ import OrderCompletePage from '../OrderCompletePage'
 import ProgressBar from './ProgressBar'
 
 import { proceedSeat } from '../../apis/booking';
+import { getMovieSessionListById } from '../../apis/movieSession'
 
 import '../Style/commonStyle.css'
 
-const SEAT_PICKER = 1
-const PAYMENT = 2
-const COMPLETE = 3
+const SEAT_PICKER_STAGE = 1
+const PAYMENT_STAGE = 2
+const COMPLETE_STAGE = 3
+
+const progressBarLength = [30, 60, 100];
 class BookingPage extends Component {
     constructor(props){
         super(props);
         this.state = {
             shouldRedirectToPrevSession : false, 
             shouldRedirectToResultPage : false,
-            bookingStage : SEAT_PICKER, //1 : seatPicker 2: payment 3: complete
+            bookingStage : SEAT_PICKER_STAGE, //1 : seatPicker 2: payment 3: complete
             clientSessionId : uuid(),
             confirmedSeats : [],
             movieSession: this.props.movieSession,
@@ -29,15 +32,26 @@ class BookingPage extends Component {
         }
     }
 
+    componentDidMount(){
+        const { movieSession } = this.state;
+        if(movieSession !== undefined){
+            getMovieSessionListById(movieSession.id).then((response) => {
+                this.setState({movieSession: response.data});
+            })
+        }
+    }
+
     componentWillUnmount(){
-        const {movieSession, clientSessionId, confirmedSeats} = this.state;
-        if(confirmedSeats.length > 0){
-            proceedSeat(movieSession.id, clientSessionId, confirmedSeats);
+        const {movieSession, clientSessionId, confirmedSeats, bookingStage} = this.state;
+        if(confirmedSeats.length > 0 && bookingStage !== COMPLETE_STAGE){
+            proceedSeat(movieSession.id, clientSessionId, confirmedSeats).then(response =>{
+
+            }).catch(error =>{});
         }
     }
 
     proceedSuccess = (confirmedSeats, movieSession) =>{
-        this.setState({confirmedSeats, movieSession, bookingStage: PAYMENT});
+        this.setState({confirmedSeats, movieSession, bookingStage: PAYMENT_STAGE});
     }
 
     proceedFailure = (movieSession) => {
@@ -47,7 +61,7 @@ class BookingPage extends Component {
     paymentComplete = (successOrderId) => {
         this.setState({
             successOrderId, 
-            bookingStage : COMPLETE
+            bookingStage : COMPLETE_STAGE
         });
         this.toggleRedirectToResultPage();
     }
@@ -74,26 +88,23 @@ class BookingPage extends Component {
             return <Redirect to={'/'}></Redirect>;
         }
         if( shouldRedirectToPrevSession ){
-            //expected selected movie session in redux, if not found, redirect to home
             return <Redirect to={previousPage}></Redirect>;
         }
         if( shouldRedirectToResultPage ){
-            //expected selected movie session in redux, if not found, redirect to home
             return <Redirect to={'/orders/'+successOrderId}></Redirect>;
         }
-
         return (
             <Grid container justify='center' alignItems='center'>                
-            <ProgressBar value={(bookingStage === SEAT_PICKER ? 30 : bookingStage === PAYMENT ? 60 :100)}/>
-            {bookingStage !== COMPLETE &&
+            <ProgressBar value={progressBarLength[bookingStage-1]}/>
+            {bookingStage !== COMPLETE_STAGE &&
             <Grid container item xs={10} className={'custom-breadcrumbs'} onClick={this.backToPrevSession}>
                 Back to sessions
             </Grid>
             }
-                {bookingStage === SEAT_PICKER ?
+                {bookingStage === SEAT_PICKER_STAGE ?
                     <SeatPickerPage movieSession={movieSession} clientSessionId={clientSessionId} proceedSuccess={this.proceedSuccess} proceedFailure={this.proceedFailure}/>
-                :bookingStage === PAYMENT ?
-                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} clientSessionId={clientSessionId} paymentComplete={this.paymentComplete}/>
+                :bookingStage === PAYMENT_STAGE ?
+                    <PaymentPage movieSession={movieSession} confirmedSeats={confirmedSeats} clientSessionId={clientSessionId} paymentComplete={this.paymentComplete} backToPrevSession={this.backToPrevSession}/>
                 :   <OrderCompletePage/>
                 }
             </Grid>

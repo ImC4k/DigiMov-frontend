@@ -77,11 +77,11 @@ class PaymentPage extends Component {
     const { totalQuantity } = this.state;
     var { requestOrder } = this.state;
     var { customerGroupQuantityMap } = requestOrder;
-
+    //a,b -> rename
     var newQuantityTotal =
       Object.keys(customerGroupQuantityMap).reduce(
-        (a, b) =>
-          b !== event.target.name ? a + customerGroupQuantityMap[b] : a,
+        (total, customer) =>
+        customer !== event.target.name ? total + customerGroupQuantityMap[customer] : total,
         0
       ) + event.target.value;
 
@@ -105,7 +105,7 @@ class PaymentPage extends Component {
   handleOrderChange = (event) => {
     var { requestOrder } = this.state;
     var { creditCardInfo } = requestOrder;
-
+    //switch
     if (event.target.id === CARD_NUMBER_ID) {
       if (event.target.value.length <= CARD_NUMBER_LIMIT) {
         creditCardInfo.number = event.target.value;
@@ -135,7 +135,7 @@ class PaymentPage extends Component {
     requestOrder.creditCardInfo = creditCardInfo;
     this.setState({ requestOrder });
   };
-
+  //add error handling for timeout
   onClickMakePaymentButton = () => {
     //todo: add api, show payment complete modal and redirect to resultPage
     const { clientSessionId, paymentComplete } = this.props;
@@ -143,6 +143,8 @@ class PaymentPage extends Component {
     requestOrder.creditCardInfo.expiryDate.year = '20'+requestOrder.creditCardInfo.expiryDate.year;
     proceedPayment(clientSessionId, requestOrder).then((response) => {
       paymentComplete(response.data.id);
+    }).catch((error)=>{
+      this.props.backToPrevSession();
     })
   };
   render() {

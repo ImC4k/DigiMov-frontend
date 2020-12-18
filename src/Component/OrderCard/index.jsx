@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import './OrderCard.css';
 import { Grid } from '@material-ui/core';
-import { Redirect } from 'react-router-dom';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 class index extends Component {
   constructor(props) {
     super(props);
     this.state = {
       order: this.props.order,
-      shouldRedirect: false,
     };
   }
 
-  redirectTo(order) {
-    this.setState({ shouldRedirect: true });
+  redirectTo() {
+    window.open(window.location.href + "/" + this.state.order.id);
   }
 
   render() {
-    var { shouldRedirect } = this.state;
-    if (shouldRedirect) {
-      return <Redirect to={'/orders/' + this.state.order.id}></Redirect>;
-    } else {
+
       const order = this.state.order;
       var paid = 0;
       for (var key in order.customerGroupQuantityMap) {
@@ -29,7 +24,7 @@ class index extends Component {
       }
 
       return (
-        <Grid container item xs={12} className={'order-card'} onClick={() => this.redirectTo(order)}>
+        <Grid container item xs={12} className={'order-card'} onClick={() => this.redirectTo()}>
           <Grid container item xs={10}>
 
             <Grid container item xs={12} className={'order-card-section'}>
@@ -53,7 +48,7 @@ class index extends Component {
           </Grid>
         </Grid>
       );
-    }
+    
   }
 }
 

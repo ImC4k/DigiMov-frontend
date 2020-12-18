@@ -76,14 +76,19 @@
 .seat-picker-proceed-button {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
   color: white !important;
-  background-color: #6e6e6e !important;
+  background-color: #00a015 !important;
   border-radius: 0 !important;
   font-size: larger !important;
   font-weight: 500;
   padding: 4% !important;
   width: 100%;
-  text-transform: capitalize !important; 
+  text-transform: capitalize !important;
 }
+
+.seat-picker-proceed-button:disabled {
+  background-color: #6e6e6e !important;
+}
+
 
 .seat-picker-proceed-button:hover {
   background-color: #444444;

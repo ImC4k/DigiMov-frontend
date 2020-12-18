@@ -38,7 +38,6 @@ function MovieSessionPicker() {
     useEffect(() => {
         if(movie.id === undefined && getMovieRetryCounter > 0){
             setLoadingData(true);
-            setLoadingData(true);
             getMovie(movieId).then((response) => {
                 setMovie(response.data);
             }).finally(() => {
@@ -71,7 +70,7 @@ function MovieSessionPicker() {
 
                 { loadingData ? <Grid container item xs={12} justify="center"><CircularLoading /></Grid> : 
 
-                    movie.id === undefined ? <Grid container item xs={12}>Disconnected from server</Grid> : 
+                    movie.id === undefined ? <Grid container item xs={12}>Movie does not exist</Grid> : 
 
                     <Grid container item xs={12}>
                         <Grid item xs={9}><div className={'section-sub-header'}>{movie.name}</div></Grid>
