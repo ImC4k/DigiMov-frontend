@@ -1,0 +1,35 @@
+h2 {
+  margin: 5px 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+.order-card {
+  box-shadow: 0px 5px 10px #00000029;
+  border-radius: 10px;
+  margin: 1rem 0!important;
+  padding: 1rem;
+}
+
+.order-card-arrow-icon {
+  color: #dddddd;
+  transform: scale(1.8);
+}
+
+.order-card-section {
+  margin: 2% 0 !important;
+}
+
+.order-card-title {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.order-card-content {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-size: large;
+  font-weight: 300;
+}

@@ -1,19 +1,42 @@
-.paper-content {
-    margin-top: 5% !important;
+.session-picker-movie-name {
+  font-weight: 500;
+  font-size: 120%;
+  text-align: left;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #646464;
 }
 
-.section-title {
-    font-weight: 700;
-    font-size: 180%;
-    text-align: left;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #000000;
+.session-picker-sessions-dropdown-list {
+  margin: 5% 0 !important;
 }
 
-.sub-section-title {
-    font-weight: 500;
-    font-size: 120%;
-    text-align: left;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #000000;
+.session-picker-sessions-dropdown {
+  font-size: 80%;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 100%;
+  box-shadow: 0px 3px 6px #48484829 !important;
+}
+
+.dropdown-header {
+  background-color: #e3e3e3 !important;
+  color: black;
+}
+
+.session-card {
+  color: black;
+  font-weight: 300;
+  font-size: 100%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 2px 2px 10px #0000001a;
+  border-radius: 5px;
+  width: 25% !important;
+  padding: 5px 0;
+  text-align: center;
+  margin: 0 2%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.session-card:hover {
+  background-color: rgb(197, 197, 197);
 }

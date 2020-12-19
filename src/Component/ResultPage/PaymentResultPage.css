@@ -1,0 +1,29 @@
+.qrcode {
+    border-style: solid;
+    border-color: #E0e0e0;
+    padding: 5%;
+}
+
+.result-item-container {
+    margin: 0.7rem 0 !important;
+}
+
+.result-item-title {
+    font-size: large;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+}
+
+.result-item-content {
+    font-size: medium;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+}
+
+.edit-seat-button {
+    background-color: black !important;
+    color: #ffffff !important;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-transform: capitalize !important;
+    font-weight: 700 !important;
+}

@@ -6,6 +6,12 @@ export const getUpcomingMovieSessionListByCinemaId = (cinemaId) => {
     );
 };
 
+export const getUpcomingMovieSessionListByMovieId = (movieId) => {
+    return api.get(
+        '/movie_sessions?movie=' + movieId + '&sessionStatus=upcoming'
+    );
+};
+
 export const getMovieSessionListById = (movieSessionId) => {
     return api.get(
         '/movie_sessions/' + movieSessionId 
