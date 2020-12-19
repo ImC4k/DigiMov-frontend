@@ -135,16 +135,18 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <List>
-          {routes.map((route, index) => (
-            <ListItem button key={route.name}>
-              <Link
-                className={'router-link'}
-                to={route.path}
-                onClick={handleDrawerClose}
-              >
-                {route.description}
-              </Link>
-            </ListItem>
+          {routes
+            .filter(route => route.isShowOnDrawer)
+            .map((route, index) => (
+              <ListItem button key={route.name}>
+                <Link
+                  className={'router-link'}
+                  to={route.path}
+                  onClick={handleDrawerClose}
+                >
+                  {route.description}
+                </Link>
+              </ListItem>
           ))}
         </List>
       </Drawer>
